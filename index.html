@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Landing Page</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Navegación principal">
+      <a href="#hero" class="logo">Marca</a>
+      <ul class="nav-links">
+        <li><a href="#features">Características</a></li>
+        <li><a href="#pricing">Precios</a></li>
+        <li><a href="#testimonials">Testimonios</a></li>
+        <li><a href="#cta">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <h1>Título principal del producto</h1>
+      <p>Descripción breve y clara de la propuesta de valor.</p>
+      <a href="#cta" class="btn btn-primary">Comenzar ahora</a>
+    </section>
+
+    <section id="features" class="features" aria-labelledby="features-title">
+      <h2 id="features-title">Características</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3>Característica uno</h3>
+          <p>Explicación corta del beneficio.</p>
+        </article>
+        <article class="card">
+          <h3>Característica dos</h3>
+          <p>Explicación corta del beneficio.</p>
+        </article>
+        <article class="card">
+          <h3>Característica tres</h3>
+          <p>Explicación corta del beneficio.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="pricing" class="pricing" aria-labelledby="pricing-title">
+      <h2 id="pricing-title">Precios</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3>Plan Básico</h3>
+          <p class="price">$9/mes</p>
+          <ul>
+            <li>Beneficio uno</li>
+            <li>Beneficio dos</li>
+          </ul>
+          <a href="#cta" class="btn btn-secondary">Elegir plan</a>
+        </article>
+        <article class="card">
+          <h3>Plan Pro</h3>
+          <p class="price">$19/mes</p>
+          <ul>
+            <li>Beneficio uno</li>
+            <li>Beneficio dos</li>
+            <li>Beneficio tres</li>
+          </ul>
+          <a href="#cta" class="btn btn-secondary">Elegir plan</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title">
+      <h2 id="testimonials-title">Testimonios</h2>
+      <div class="card-grid">
+        <blockquote class="card">
+          <p>"Excelente producto, cambió mi forma de trabajar."</p>
+          <footer>— Cliente satisfecho</footer>
+        </blockquote>
+        <blockquote class="card">
+          <p>"Soporte rápido y buena calidad."</p>
+          <footer>— Otro cliente</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="cta" class="cta" aria-labelledby="cta-title">
+      <h2 id="cta-title">¿Listo para empezar?</h2>
+      <form class="cta-form">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+        <button type="submit" class="btn btn-primary">Suscribirme</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Marca. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>
