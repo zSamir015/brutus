@@ -1,33 +1,16 @@
-# Responsive Landing Page
+# Landing neo-brutalista
 
-Landing page responsiva construida con HTML5 semántico y CSS moderno (Grid + Flexbox), con foco en accesibilidad (WCAG AA).
+HTML + CSS + JS vanilla. Estética neo-brutalista (bordes 3px, sombras sólidas), menú responsive, skeleton loaders y accesibilidad (skip link, ARIA, objetivos ≥44px, `prefers-reduced-motion`).
 
-## Demo
+- `css/tokens.css` — único archivo de tokens de diseño
+- `css/styles.css` — estilos (solo consumen tokens)
+- `js/app.js` — menú, carga de contenido con skeletons, formulario validado
+- `data/content.json` — contenido
+- `supabase/` — migración RLS + Edge Function `subscribe`
+- `SECURITY.md` — checklist de seguridad y despliegue
 
-https://zsamir015.github.io/responsive-landing-page/
-
-## Stack
-
-- HTML5 semántico
-- CSS3 (Grid + Flexbox)
-- Mobile-first, responsive breakpoints
-- Sin frameworks ni dependencias
-
-## Características
-
-- Estructura semántica (`header`, `nav`, `main`, `section`, `footer`)
-- Layout con CSS Grid (tarjetas) y Flexbox (nav, hero, formulario)
-- Accesible: contraste AA, foco visible, labels en formularios, navegación por teclado
-- 100% responsive (breakpoints en 768px y 480px)
-
-## Cómo correr local
-
-```bash
-git clone https://github.com/<tu-usuario>/responsive-landing-page.git
-cd responsive-landing-page
-open index.html
+Probar en local (el `fetch` necesita servidor, no `file://`):
 ```
-
-## Licencia
-
-MIT
+python3 -m http.server 8000
+```
+Demo: https://zsamir015.github.io/responsive-landing-page/
