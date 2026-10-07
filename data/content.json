@@ -1,0 +1,15 @@
+{
+  "features": [
+    { "title": "Rápido", "text": "Carga en segundos." },
+    { "title": "Seguro", "text": "Tus datos, protegidos." },
+    { "title": "Claro", "text": "Sin pasos de más." }
+  ],
+  "plans": [
+    { "name": "Básico", "price": "$9/mes", "perks": ["Uso personal", "Soporte email"] },
+    { "name": "Pro", "price": "$19/mes", "perks": ["Equipos", "Soporte prioritario", "Reportes"] }
+  ],
+  "testimonials": [
+    { "quote": "Cambió mi forma de trabajar.", "author": "Cliente satisfecho" },
+    { "quote": "Soporte rápido, gran calidad.", "author": "Otro cliente" }
+  ]
+}

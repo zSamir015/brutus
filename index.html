@@ -3,98 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Landing Page</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://*.supabase.co; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="Landing page responsive neo-brutalista.">
+  <title>Marca — Landing</title>
   <link rel="stylesheet" href="css/styles.css">
+  <script src="js/config.js" defer></script>
+  <script src="js/app.js" defer></script>
 </head>
 <body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
   <header class="site-header">
     <nav class="navbar" aria-label="Navegación principal">
       <a href="#hero" class="logo">Marca</a>
-      <ul class="nav-links">
-        <li><a href="#features">Características</a></li>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menú</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#features">Ventajas</a></li>
         <li><a href="#pricing">Precios</a></li>
-        <li><a href="#testimonials">Testimonios</a></li>
+        <li><a href="#testimonials">Opiniones</a></li>
         <li><a href="#cta">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <section id="hero" class="hero">
-      <h1>Título principal del producto</h1>
-      <p>Descripción breve y clara de la propuesta de valor.</p>
-      <a href="#cta" class="btn btn-primary">Comenzar ahora</a>
-    </section>
-
-    <section id="features" class="features" aria-labelledby="features-title">
-      <h2 id="features-title">Características</h2>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Característica uno</h3>
-          <p>Explicación corta del beneficio.</p>
-        </article>
-        <article class="card">
-          <h3>Característica dos</h3>
-          <p>Explicación corta del beneficio.</p>
-        </article>
-        <article class="card">
-          <h3>Característica tres</h3>
-          <p>Explicación corta del beneficio.</p>
-        </article>
+      <div class="hero-box">
+        <h1>Hazlo simple.<br>Hazlo fuerte.</h1>
+        <p>Una herramienta. Cero ruido.</p>
+        <a href="#cta" class="btn btn-primary">Empezar</a>
       </div>
     </section>
 
-    <section id="pricing" class="pricing" aria-labelledby="pricing-title">
+    <section id="features" aria-labelledby="features-title">
+      <h2 id="features-title">Ventajas</h2>
+      <div class="card-grid" data-list="features" aria-busy="true"></div>
+    </section>
+
+    <section id="pricing" aria-labelledby="pricing-title">
       <h2 id="pricing-title">Precios</h2>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Plan Básico</h3>
-          <p class="price">$9/mes</p>
-          <ul>
-            <li>Beneficio uno</li>
-            <li>Beneficio dos</li>
-          </ul>
-          <a href="#cta" class="btn btn-secondary">Elegir plan</a>
-        </article>
-        <article class="card">
-          <h3>Plan Pro</h3>
-          <p class="price">$19/mes</p>
-          <ul>
-            <li>Beneficio uno</li>
-            <li>Beneficio dos</li>
-            <li>Beneficio tres</li>
-          </ul>
-          <a href="#cta" class="btn btn-secondary">Elegir plan</a>
-        </article>
-      </div>
+      <div class="card-grid" data-list="plans" aria-busy="true"></div>
     </section>
 
-    <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title">
-      <h2 id="testimonials-title">Testimonios</h2>
-      <div class="card-grid">
-        <blockquote class="card">
-          <p>"Excelente producto, cambió mi forma de trabajar."</p>
-          <footer>— Cliente satisfecho</footer>
-        </blockquote>
-        <blockquote class="card">
-          <p>"Soporte rápido y buena calidad."</p>
-          <footer>— Otro cliente</footer>
-        </blockquote>
-      </div>
+    <section id="testimonials" aria-labelledby="testimonials-title">
+      <h2 id="testimonials-title">Opiniones</h2>
+      <div class="card-grid" data-list="testimonials" aria-busy="true"></div>
     </section>
 
-    <section id="cta" class="cta" aria-labelledby="cta-title">
-      <h2 id="cta-title">¿Listo para empezar?</h2>
-      <form class="cta-form">
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" name="email" required placeholder="tu@email.com">
-        <button type="submit" class="btn btn-primary">Suscribirme</button>
-      </form>
+    <section id="cta" aria-labelledby="cta-title">
+      <div class="cta-box">
+        <h2 id="cta-title">¿Listo?</h2>
+        <form class="cta-form" id="subscribe-form" novalidate>
+          <label for="email">Correo</label>
+          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" maxlength="254" required placeholder="tu@email.com" aria-describedby="form-msg">
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="btn btn-primary">Suscribirme</button>
+          <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2026 Marca. Todos los derechos reservados.</p>
+    <p>&copy; 2026 Marca</p>
   </footer>
 </body>
 </html>
