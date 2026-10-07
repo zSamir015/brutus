@@ -4,7 +4,7 @@ Landing page responsiva construida con HTML5 semántico y CSS moderno (Grid + Fl
 
 ## Demo
 
-(agregar link de GitHub Pages aquí después de activarlo)
+https://zsamir015.github.io/responsive-landing-page/
 
 ## Stack
 
