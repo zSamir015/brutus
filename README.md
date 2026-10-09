@@ -1,16 +1,83 @@
-# Landing neo-brutalista
+# Brutus Burgers 🍔
 
-HTML + CSS + JS vanilla. Estética neo-brutalista (bordes 3px, sombras sólidas), menú responsive, skeleton loaders y accesibilidad (skip link, ARIA, objetivos ≥44px, `prefers-reduced-motion`).
+[![Deploy](https://github.com/zSamir015/brutus/actions/workflows/pages.yml/badge.svg)](https://github.com/zSamir015/brutus/actions/workflows/pages.yml)
+[![Lighthouse](https://github.com/zSamir015/brutus/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/zSamir015/brutus/actions/workflows/lighthouse.yml)
+[![Licencia MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
 
-- `css/tokens.css` — único archivo de tokens de diseño
-- `css/styles.css` — estilos (solo consumen tokens)
-- `js/app.js` — menú, carga de contenido con skeletons, formulario validado
-- `data/content.json` — contenido
-- `supabase/` — migración RLS + Edge Function `subscribe`
-- `SECURITY.md` — checklist de seguridad y despliegue
+**[Ver demo en vivo →](https://zsamir015.github.io/brutus/)**
 
-Probar en local (el `fetch` necesita servidor, no `file://`):
+Landing page neo-brutalista para una hamburguesería **ficticia**. Proyecto de portfolio: HTML, CSS y JavaScript vanilla en el frontend, y un backend opcional en Supabase para la suscripción al "Club Brutus".
+
+![Demo: la hamburguesa se arma, filtro de la carta, horario y suscripción](docs/media/demo.gif)
+
+| Escritorio | Móvil |
+|---|---|
+| ![Vista de escritorio](docs/media/desktop.png) | ![Vista móvil](docs/media/mobile.png) |
+
+## Características
+
+- **Diseño neo-brutalista**: bordes de 3 px, sombras sólidas sin desenfoque y una hamburguesa ilustrada en SVG que se arma capa por capa.
+- **Carta filtrable** por categoría, con la favorita destacada y etiquetas (picante, veggie).
+- **Horario en vivo**: "Abierto ahora / Cerrado" calculado en la zona horaria del local, no en la del visitante.
+- **Skeleton loaders** mientras carga el contenido, y aparición de secciones al hacer scroll.
+- **Club Brutus**: formulario con validación, consentimiento explícito, honeypot anti-bots y throttle de UX.
+- **Accesible**: skip link, ARIA, objetivos táctiles de 44 px o más, anuncios `aria-live` y `prefers-reduced-motion` respetado.
+- **Seguro**: CSP estricta sin `unsafe-inline`, DOM construido solo con `textContent` y sin secretos en el frontend.
+
+## Stack
+
+| Capa | Tecnología |
+|---|---|
+| Frontend | HTML, CSS (tokens de diseño), JavaScript ES modules, sin build ni dependencias |
+| Backend (opcional) | Supabase: Postgres con RLS + Edge Function en Deno con Zod |
+| Calidad | Tests con `node --test`, Lighthouse CI (accesibilidad ≥ 95) |
+| Despliegue | GitHub Actions → GitHub Pages |
+
+## Estructura
+
 ```
-python3 -m http.server 8000
+index.html
+css/tokens.css          Único origen de diseño: colores, espaciado, tipografía, movimiento
+css/styles.css          Estilos; solo consumen tokens
+js/app.js               Menú, render del contenido, filtro, horario, formulario
+js/validate.js          Validación del formulario (pura, con tests)
+js/hours.js             Cálculo de "abierto / cerrado" (puro, con tests)
+js/config.js            Modo demo; el workflow lo sobrescribe al desplegar
+data/content.json       Carta, reseñas, ubicación y horario
+supabase/               Migraciones SQL y Edge Function `subscribe`
+scripts/build.sh        Copia a _site/ solo lo que se publica
 ```
-Demo: https://zsamir015.github.io/responsive-landing-page/
+
+## Ejecutar en local
+
+```bash
+npm run dev      # python3 -m http.server 8000 (el fetch y los módulos no funcionan desde file://)
+npm test         # tests de validación y horario
+npm run build    # genera _site/ como en producción
+```
+
+## Decisiones técnicas
+
+- **Sin frameworks ni build.** La página pesa pocos KB y carga sin pasos intermedios.
+- **Contenido en JSON.** Cambiar la carta o el horario no requiere tocar HTML.
+- **El horario usa la zona del local** (`America/Panama`, con `Intl.DateTimeFormat`), así un visitante en otro país ve el estado correcto.
+- **El servidor nunca confía en el cliente.** La Edge Function revalida con Zod, exige consentimiento y aplica rate limiting en tres capas (global, por IP y por correo).
+- **RLS sin políticas.** Las tablas son inaccesibles con la anon key; solo la Edge Function (service role) escribe.
+
+Detalles y checklist en [SECURITY.md](SECURITY.md).
+
+## Backend (opcional)
+
+Sin backend, el formulario funciona en **modo demo**: valida, pero no guarda nada. Para activarlo:
+
+```bash
+supabase db push
+supabase secrets set SERVICE_ROLE_KEY=... ALLOWED_ORIGINS=https://zsamir015.github.io
+supabase functions deploy subscribe
+```
+
+Después añade `SUPABASE_FUNCTIONS_URL` y `SUPABASE_ANON_KEY` en GitHub → Settings → Secrets and variables → Actions. El workflow genera `js/config.js` con esos valores públicos al desplegar.
+
+## Licencia
+
+[MIT](LICENSE) © 2026 Samir Lorenzo. *Brutus Burgers es un negocio ficticio creado para este portfolio.*
