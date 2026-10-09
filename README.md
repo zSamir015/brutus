@@ -23,6 +23,8 @@ Landing page neo-brutalista para una hamburguesería **ficticia**. Proyecto de p
 - **Club Brutus**: formulario con validación, consentimiento explícito, honeypot anti-bots y throttle de UX.
 - **Accesible**: skip link, ARIA, objetivos táctiles de 44 px o más, anuncios `aria-live` y `prefers-reduced-motion` respetado.
 - **Seguro**: CSP estricta sin `unsafe-inline`, DOM construido solo con `textContent` y sin secretos en el frontend.
+- **Detalles de UI animados**: cinta de anuncios, brillo que cruza los botones, iconos que giran, tarjetas que se elevan y se hunden, casilla con marca animada y grabados que se enderezan al pasar el mouse.
+- **La leyenda**: grabados humorísticos de la Roma antigua de John Leech (c. 1850, dominio público) sobre fondo de papel.
 
 ## Stack
 
@@ -78,6 +80,17 @@ supabase functions deploy subscribe
 
 Después añade `SUPABASE_FUNCTIONS_URL` y `SUPABASE_ANON_KEY` en GitHub → Settings → Secrets and variables → Actions. El workflow genera `js/config.js` con esos valores públicos al desplegar.
 
+## Créditos
+
+- Animaciones de UI adaptadas de [Uiverse.io](https://uiverse.io/) (autor: 0xnihilism, licencia MIT).
+- Ilustraciones de John Leech, *The Comic History of Rome* (c. 1850), dominio público vía [Public Domain Image Archive](https://pdimagearchive.org/).
+- Textura de papel derivada de [Texture Labs](https://texturelabs.org/).
+- Inspiración de diseño: galerías de neo-brutalismo en [Dribbble](https://dribbble.com/search/neo-brutalism-food) (solo referencia; no se copió ningún diseño).
+
+Detalles y licencias en [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 ## Licencia
 
-[MIT](LICENSE) © 2026 Samir Lorenzo. *Brutus Burgers es un negocio ficticio creado para este portfolio.*
+El código es [MIT](LICENSE) © 2026 Samir Lorenzo. Los recursos de terceros conservan sus licencias (ver [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)); en particular, `assets/paper-grain.jpg` **no** está bajo MIT.
+
+*Brutus Burgers es un negocio ficticio creado para este portfolio.*
