@@ -1,7 +1,7 @@
-// Ejemplo de configuración con backend. Para probar en local, copia estos valores a js/config.js
-// SIN hacer commit de ellos (o usa GitHub Secrets y deja que el workflow genere el archivo al desplegar).
-// SOLO valores públicos: la anon key es pública por diseño (RLS protege los datos).
-// NUNCA pongas aquí la service_role key ni otro secreto: todo lo de este archivo lo ve cualquier visitante.
+// Example config with a backend. To test locally, copy these values into js/config.js
+// WITHOUT committing them (or use GitHub Secrets and let the workflow generate the file on deploy).
+// PUBLIC values only: the anon key is public by design (RLS protects the data).
+// NEVER put the service_role key or any other secret here: every visitor can read this file.
 window.APP_CONFIG = {
   functionsUrl: "https://TU-PROYECTO.supabase.co/functions/v1",
   anonKey: "TU_ANON_KEY_PUBLICA",

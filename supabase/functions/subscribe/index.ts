@@ -1,5 +1,5 @@
-// Edge Function: validación server-side, rate limit en capas, CORS restrictivo.
-// Secretos (SERVICE_ROLE_KEY, ALLOWED_ORIGINS) vienen de `supabase secrets set`, nunca del frontend.
+// Edge Function: server-side validation, layered rate limiting, restrictive CORS.
+// Secrets (SERVICE_ROLE_KEY, ALLOWED_ORIGINS) come from `supabase secrets set`, never from the frontend.
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { z } from "npm:zod@3";
 
@@ -13,16 +13,16 @@ const cors = (origin: string | null) => ({
 
 const body = z.object({
   email: z.string().max(254).transform((s) => s.trim().toLowerCase()).pipe(z.string().email()),
-  consent: z.literal(true), // consentimiento explícito obligatorio
+  consent: z.literal(true), // explicit consent is required
 }).strict();
 
 const json = (data: unknown, status: number, origin: string | null, extra: HeadersInit = {}) =>
   new Response(JSON.stringify(data), { status, headers: { "Content-Type": "application/json", ...cors(origin), ...extra } });
 
 /**
- * IP del cliente. El cliente puede enviar su propio X-Forwarded-For y los proxies AÑADEN al final,
- * así que la primera entrada es falsificable. Se usa la ÚLTIMA (la que agrega el proxy de la plataforma),
- * o una cabecera de confianza configurable. Verifica en tu despliegue enviando una cabecera falsa.
+ * Client IP. A client can send its own X-Forwarded-For and proxies APPEND to the end,
+ * so the first entry can be forged. We use the LAST one (added by the platform proxy),
+ * or a configurable trusted header. Verify on your deployment by sending a fake header.
  */
 function clientIp(req: Request): string {
   const trusted = Deno.env.get("TRUSTED_IP_HEADER");
@@ -40,21 +40,21 @@ Deno.serve(async (req) => {
   const admin = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SERVICE_ROLE_KEY")!);
   const limit = async (key: string, max: number) => {
     const { data } = await admin.rpc("check_rate_limit", { p_key: key, p_max: max, p_window_seconds: 60 });
-    return data === true; // si la RPC falla, se bloquea (fail closed)
+    return data === true; // if the RPC fails, block the request (fail closed)
   };
   const tooMany = () => json({ error: "rate_limited" }, 429, origin, { "Retry-After": "60" });
 
-  // Capa 1: límite global (no se puede evadir cambiando de IP). Capa 2: por IP.
+  // Layer 1: global limit (cannot be bypassed by changing IP). Layer 2: per IP.
   if (!(await limit("global:subscribe", 120))) return tooMany();
   if (!(await limit(`ip:${clientIp(req)}:subscribe`, 5))) return tooMany();
 
   let parsed;
   try { parsed = body.parse(await req.json()); } catch { return json({ error: "invalid" }, 400, origin); }
 
-  // Capa 3: por correo (evita usar el formulario para inundar una misma dirección).
+  // Layer 3: per email (stops the form from being used to flood one address).
   if (!(await limit(`email:${parsed.email}:subscribe`, 3))) return tooMany();
 
-  // upsert idempotente: no revela si el correo ya existía
+  // idempotent upsert: does not reveal whether the email already existed
   const { error } = await admin
     .from("subscribers")
     .upsert({ email: parsed.email, consented_at: new Date().toISOString() }, { onConflict: "email", ignoreDuplicates: true });

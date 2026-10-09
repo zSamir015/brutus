@@ -1,10 +1,10 @@
-# Avisos de terceros
+# Third-party notices
 
-Este proyecto usa recursos de terceros. Cada uno conserva su propia licencia, que **no** es la licencia MIT de este repositorio salvo que se indique.
+This project uses third-party resources. Each one keeps its own license, which is **not** this repository's MIT license unless stated otherwise.
 
-## Animaciones de UI: Uiverse.io (MIT)
+## UI animations: Uiverse.io (MIT)
 
-El brillo que cruza los botones, el giro del icono y el efecto de elevar y hundir las tarjetas de la carta están adaptados de elementos de [Uiverse.io](https://uiverse.io/) creados por **0xnihilism** (`Buttons/0xnihilism_fast-cat-82`, `Cards/0xnihilism_thin-crab-36` en [uiverse-io/galaxy](https://github.com/uiverse-io/galaxy)).
+The glare that sweeps across the buttons, the icon wiggle, and the lift-and-press effect on the menu cards are adapted from [Uiverse.io](https://uiverse.io/) elements created by **0xnihilism** (`Buttons/0xnihilism_fast-cat-82` and `Cards/0xnihilism_thin-crab-36` in [uiverse-io/galaxy](https://github.com/uiverse-io/galaxy)).
 
 ```
 MIT License
@@ -30,14 +30,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## Ilustraciones: John Leech (dominio público)
+## Illustrations: John Leech (public domain)
 
-`assets/leech-gladiator.jpg` y `assets/leech-tarquinius.jpg` proceden de *The Comic History of Rome* (Gilbert Abbott à Beckett, ilustrado por John Leech, c. 1850), obtenidas del [Public Domain Image Archive](https://pdimagearchive.org/) de The Public Domain Review. Fuente: Internet Archive / Duke University Libraries. Derechos subyacentes: dominio público en todo el mundo. Las imágenes se recortaron y redimensionaron.
+`assets/leech-gladiator.jpg` and `assets/leech-tarquinius.jpg` come from *The Comic History of Rome* (Gilbert Abbott à Beckett, illustrated by John Leech, c. 1850), obtained from the [Public Domain Image Archive](https://pdimagearchive.org/) by The Public Domain Review. Source: Internet Archive / Duke University Libraries. Underlying rights: public domain worldwide. The images were cropped and resized.
 
-## Textura de papel: Texture Labs
+## Paper texture: Texture Labs
 
-`assets/paper-grain.jpg` es una **obra derivada** de la textura *Paper 241* de [Texture Labs](https://texturelabs.org/): se aisló el grano, se amplificó y se tiñó con el color de la marca. Se usa como parte del sitio, conforme a los [términos de Texture Labs](https://texturelabs.org/terms), que permiten el uso en sitios web pero prohíben redistribuir los recursos en su forma original o como paquete de texturas. **Este archivo no está cubierto por la licencia MIT del proyecto**: no lo reutilices como textura independiente; descarga la original en Texture Labs.
+`assets/paper-grain.jpg` is a **derivative work** of the *Paper 241* texture from [Texture Labs](https://texturelabs.org/): the grain was isolated, amplified and tinted with the brand color. It is used as part of the website, in line with the [Texture Labs terms](https://texturelabs.org/terms), which allow use in websites but forbid redistributing the resources in their original form or as a texture pack. **This file is not covered by the project's MIT license**: do not reuse it as a standalone texture; download the original from Texture Labs instead.
 
-## Tipografía
+## Dish, storefront and map illustrations
 
-Solo fuentes del sistema (Arial Black, Helvetica Neue, Arial, system-ui y monoespaciadas del sistema). No se incluye ningún archivo de fuente.
+The SVG illustrations of the dishes (`js/art.js`), the hero burger, the storefront and the map are original work made for this project and are covered by the MIT license.
+
+## Typography
+
+System fonts only (Arial Black, Helvetica Neue, Arial, system-ui and the system monospace fonts). No font files are included.

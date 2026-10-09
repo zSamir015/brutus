@@ -1,6 +1,6 @@
-// Ilustraciones ficticias de los platos, en SVG generado con createElementNS.
-// Sin innerHTML ni estilos inline (la CSP los bloquearía): cada forma lleva una clase
-// y los colores salen de tokens.css vía styles.css.
+// Dish illustrations as SVG built with createElementNS.
+// No innerHTML and no inline styles (the CSP would block them): every shape gets a class
+// and its colors come from tokens.css through styles.css.
 
 const NS = 'http://www.w3.org/2000/svg';
 
@@ -77,7 +77,7 @@ export const ART = {
   ],
 };
 
-/** Devuelve un <svg> decorativo para la ilustración `name` (o null si no existe). */
+/** Returns a decorative <svg> for the illustration `name` (or null if it does not exist). */
 export function renderArt(name) {
   const shapes = ART[name];
   if (!shapes) return null;

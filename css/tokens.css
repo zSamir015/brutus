@@ -1,7 +1,7 @@
-/* Único origen de diseño: colores, bordes, sombras, espaciado, tipografía y movimiento.
-   styles.css no define valores propios, solo consume estas variables. */
+/* Single source of design: colors, borders, shadows, spacing, typography and motion.
+   styles.css defines no values of its own; it only consumes these variables. */
 :root {
-  /* Paleta "de la parrilla" */
+  /* "Grill" palette */
   --ink: #141010;
   --cream: #fff4e0;
   --white: #ffffff;
@@ -24,7 +24,7 @@
   --skel-base: #efe2c8;
   --skel-shine: #fff7e8;
 
-  /* Bordes y sombras sólidas */
+  /* Borders and solid shadows */
   --bw: 3px;
   --bw-thin: 2px;
   --border: var(--bw) solid var(--ink);
@@ -35,7 +35,7 @@
   --lift: 2px;
   --backdrop: rgb(20 16 16 / 0.55);
 
-  /* Espaciado */
+  /* Spacing */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 1rem;
@@ -43,14 +43,14 @@
   --space-5: 2.5rem;
   --space-6: 4rem;
 
-  --touch: 44px; /* tamaño mínimo de objetivo táctil */
+  --touch: 44px; /* minimum touch target size */
   --max-width: 1140px;
   --form-width: 520px;
   --card-min: 250px;
-  --header-h: 7rem; /* navbar + cinta */
+  --header-h: 7rem; /* navbar + ticker */
   --focus-offset: 3px;
 
-  /* Tipografía (sin fuentes externas: la CSP solo permite 'self') */
+  /* Typography (system fonts only: the CSP allows 'self' and nothing else) */
   --font: "Helvetica Neue", Arial, system-ui, sans-serif;
   --font-display: "Arial Black", "Helvetica Neue", Arial, system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -62,7 +62,7 @@
   --fw-bold: 700;
   --fw-black: 900;
 
-  /* Ilustraciones SVG (unidades del viewBox) */
+  /* SVG illustrations (viewBox units) */
   --svg-stroke: 7;
   --svg-stroke-thin: 4;
   --svg-road: 22;
@@ -83,7 +83,7 @@
   --map-min: 16rem;
   --check: 1.375rem;
 
-  /* Movimiento */
+  /* Motion */
   --speed: 120ms;
   --speed-slow: 450ms;
   --speed-bounce: 900ms;

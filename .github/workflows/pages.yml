@@ -1,7 +1,7 @@
 name: Deploy Pages
 
-# Construye _site/ (solo archivos públicos) y lo publica en la rama gh-pages,
-# que GitHub Pages sirve. supabase/, test/, docs y configs nunca llegan a esa rama.
+# Builds _site/ (public files only) and publishes it to the gh-pages branch,
+# which GitHub Pages serves. supabase/, test/, docs and configs never reach that branch.
 
 on:
   push:
@@ -36,8 +36,8 @@ jobs:
       - name: Build _site
         run: sh scripts/build.sh
 
-      # Sobrescribe js/config.js con valores PÚBLICOS desde GitHub Secrets (si existen).
-      # Si no existen, se publica el config.js de modo demo del repo.
+      # Overwrites js/config.js with PUBLIC values from GitHub Secrets (if present).
+      # Otherwise the repo's demo-mode config.js is published.
       - name: Generate config.js
         env:
           FUNCTIONS_URL: ${{ secrets.SUPABASE_FUNCTIONS_URL }}
@@ -47,7 +47,7 @@ jobs:
             printf 'window.APP_CONFIG = { functionsUrl: "%s", anonKey: "%s" };\n' "$FUNCTIONS_URL" "$ANON_KEY" > _site/js/config.js
           fi
 
-      # Rama huérfana con un solo commit: sin historial que crezca ni archivos antiguos.
+      # Orphan branch with a single commit: no growing history and no stale files.
       - name: Publish to gh-pages
         working-directory: _site
         run: |

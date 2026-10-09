@@ -1,5 +1,5 @@
--- Suscriptores: nadie con anon/authenticated puede leer ni escribir directo (RLS sin policies).
--- Los inserts pasan SOLO por la Edge Function `subscribe` (service role).
+-- Subscribers: anon/authenticated cannot read or write directly (RLS with no policies).
+-- Inserts go ONLY through the `subscribe` Edge Function (service role).
 create table public.subscribers (
   id         uuid primary key default gen_random_uuid(),
   email      text not null unique check (char_length(email) <= 254),
@@ -9,7 +9,7 @@ alter table public.subscribers enable row level security;
 alter table public.subscribers force row level security;
 revoke all on public.subscribers from anon, authenticated;
 
--- Rate limiting / IP limiting (ventana fija)
+-- Rate limiting / IP limiting (fixed window)
 create table public.rate_limits (
   key          text primary key,
   count        int not null,

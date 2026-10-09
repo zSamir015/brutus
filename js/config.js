@@ -1,5 +1,5 @@
-// Modo demo: sin backend configurado. El formulario valida, pero no envía nada.
-// Este archivo sí está versionado: es la configuración por defecto para desarrollo local.
-// Al desplegar, el workflow de GitHub Actions lo sobrescribe con los valores PÚBLICOS
-// de GitHub Secrets (si existen). Nunca pongas aquí la service_role key ni otro secreto.
+// Demo mode: no backend configured. The form validates but sends nothing.
+// This file is committed on purpose: it is the default config for local development.
+// On deploy, the GitHub Actions workflow overwrites it with the PUBLIC values
+// from GitHub Secrets (if present). Never put the service_role key or any other secret here.
 window.APP_CONFIG = { functionsUrl: "", anonKey: "" };

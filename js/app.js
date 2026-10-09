@@ -7,7 +7,7 @@ const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
 document.documentElement.classList.add('js');
 
-// ───────── Menú móvil ─────────
+// ───────── Mobile menu ─────────
 const toggle = $('.nav-toggle');
 const links = $('#nav-links');
 const backdrop = $('.nav-backdrop');
@@ -30,7 +30,7 @@ document.addEventListener('keydown', (e) => {
 });
 matchMedia('(min-width: 769px)').addEventListener('change', (e) => e.matches && setMenu(false));
 
-// ───────── DOM seguro: siempre textContent, nunca innerHTML con datos ─────────
+// ───────── Safe DOM: always textContent, never innerHTML with data ─────────
 const el = (tag, cls, text) => {
   const node = document.createElement(tag);
   if (cls) node.className = cls;
@@ -38,7 +38,7 @@ const el = (tag, cls, text) => {
   return node;
 };
 
-// Panamá usa el dólar; '$12.90' es más corto y claro que 'USD 12.90'.
+// Panama uses the US dollar; '$12.90' is shorter and clearer than 'USD 12.90'.
 const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 const TAGS = { picante: 'Picante', veggie: 'Veggie' };
 const initials = (name) => name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
@@ -108,7 +108,7 @@ const showError = (box) => {
   settle(box);
 };
 
-// ───────── Horario ─────────
+// ───────── Opening hours ─────────
 const DAY_NAMES = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 const WEEK_ORDER = [1, 2, 3, 4, 5, 6, 0];
 const timeText = (hhmm) => (hhmm === '24:00' ? 'medianoche' : `las ${formatTime(hhmm)}`);
@@ -140,7 +140,7 @@ function renderHours(hours, timezone) {
   );
 }
 
-// ───────── Filtro de la carta ─────────
+// ───────── Menu filter ─────────
 const filterButtons = $$('[data-filter]');
 const filterStatus = $('[data-filter-status]');
 
@@ -152,7 +152,7 @@ function applyFilter(category) {
     if (match) {
       shown++;
       card.classList.remove('pop');
-      void card.offsetWidth; // reinicia la animación
+      void card.offsetWidth; // restart the animation
       card.classList.add('pop');
     }
   }
@@ -162,7 +162,7 @@ function applyFilter(category) {
 
 for (const button of filterButtons) button.addEventListener('click', () => applyFilter(button.dataset.filter));
 
-// ───────── Carga de contenido ─────────
+// ───────── Content loading ─────────
 fetch('data/content.json', { credentials: 'omit' })
   .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
   .then((data) => {
@@ -177,7 +177,7 @@ fetch('data/content.json', { credentials: 'omit' })
     $('[data-location-note]').textContent = data.location.note;
     renderHours(data.hours, data.location.timezone);
     setInterval(() => renderHours(data.hours, data.location.timezone), 60_000);
-    // El contenido cargado desplaza las secciones: si se llegó con #ancla, se vuelve a ella.
+    // Loaded content shifts the sections: if the page was opened with a #hash, scroll back to it.
     if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
   })
   .catch(() => {
@@ -185,7 +185,7 @@ fetch('data/content.json', { credentials: 'omit' })
     for (const node of $$('[data-status]')) node.textContent = '';
   });
 
-// ───────── Aparición al hacer scroll ─────────
+// ───────── Reveal on scroll ─────────
 const reveals = $$('.reveal');
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const io = new IntersectionObserver(
@@ -203,7 +203,7 @@ if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: re
   reveals.forEach((section) => section.classList.add('is-visible'));
 }
 
-// ───────── Club Brutus: validación, rate limit de UX y envío ─────────
+// ───────── Club Brutus: validation, UX rate limit and submission ─────────
 const form = $('#subscribe-form');
 const input = form.elements.email;
 const consent = form.elements.consent;

@@ -1,6 +1,6 @@
 @import url("tokens.css");
 
-/* Solo consume variables de tokens.css (salvo 0, porcentajes, proporciones sin unidad y el patrón estándar de .sr-only). */
+/* Only consumes variables from tokens.css (except 0, percentages, unitless ratios and the standard .sr-only pattern). */
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
@@ -10,7 +10,7 @@ body {
   font-size: var(--fs-md);
   line-height: 1.5;
   color: var(--ink);
-  /* Grano de papel: derivado de una textura de Texture Labs (ver README). */
+  /* Paper grain: derived from a Texture Labs texture (see THIRD_PARTY_NOTICES.md). */
   background: var(--cream) url("../assets/paper-grain.jpg") center / cover fixed;
 }
 h1, h2, h3 { font-family: var(--font-display); line-height: 1.02; font-weight: var(--fw-black); margin: 0 0 var(--space-3); text-transform: uppercase; }
@@ -21,16 +21,16 @@ p { margin: 0 0 var(--space-3); }
 ul { margin: 0 0 var(--space-3); padding-left: var(--space-4); }
 section { max-width: var(--max-width); margin: 0 auto; padding: var(--space-6) var(--space-3); }
 a { color: inherit; }
-/* El atributo hidden debe ganar a cualquier display de componente (p. ej. .card { display: flex }). */
+/* The hidden attribute must beat any component display (e.g. .card { display: flex }). */
 [hidden] { display: none !important; }
 
-/* ───────── Accesibilidad ───────── */
+/* ───────── Accessibility ───────── */
 :focus-visible { outline: var(--bw) solid var(--ketchup); outline-offset: var(--focus-offset); }
 .skip-link { position: absolute; left: var(--space-3); top: calc(-1 * var(--space-6)); z-index: 100; background: var(--mustard); border: var(--border); padding: var(--space-2) var(--space-3); font-weight: var(--fw-bold); }
 .skip-link:focus { top: var(--space-2); }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-/* ───────── Botones ───────── */
+/* ───────── Buttons ───────── */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: var(--touch); min-width: var(--touch); padding: 0 var(--space-4);
@@ -41,7 +41,7 @@ a { color: inherit; }
   position: relative; overflow: hidden; isolation: isolate;
   transition: transform var(--speed), box-shadow var(--speed);
 }
-/* Brillo y giro del icono: adaptados de Uiverse.io (0xnihilism, licencia MIT). */
+/* Glare sweep and icon wiggle: adapted from Uiverse.io (0xnihilism, MIT license). */
 .btn::before { content: ""; position: absolute; inset: 0; z-index: -1; translate: -110% 0; background: linear-gradient(100deg, transparent 20%, var(--glare) 50%, transparent 80%); }
 .btn:hover::before { animation: glare var(--glare-speed) var(--ease-out) infinite; }
 @keyframes glare { to { translate: 110% 0; } }
@@ -54,7 +54,7 @@ a { color: inherit; }
 .btn-primary { background: var(--ketchup); color: var(--white); }
 .btn-secondary { background: var(--white); }
 
-/* ───────── Header y menú ───────── */
+/* ───────── Header and menu ───────── */
 .site-header { position: sticky; top: 0; z-index: 50; background: var(--white); border-bottom: var(--border); }
 .navbar { position: relative; z-index: 2; max-width: var(--max-width); margin: 0 auto; padding: var(--space-2) var(--space-3); display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); background: var(--white); }
 .logo { display: inline-flex; align-items: center; gap: var(--space-1); min-height: var(--touch); padding: 0 var(--space-3); font-family: var(--font-display); font-size: var(--fs-lg); text-transform: uppercase; text-decoration: none; color: var(--ink); background: var(--mustard); border: var(--border); box-shadow: var(--shadow-sm); }
@@ -98,12 +98,12 @@ a { color: inherit; }
 
 .sticker { position: absolute; top: 0; right: 0; display: grid; place-items: center; width: var(--sticker); aspect-ratio: 1; margin: 0; font-family: var(--font-display); font-size: var(--fs-sm); line-height: 1.1; text-align: center; text-transform: uppercase; color: var(--white); background: var(--ketchup); border: var(--border); border-radius: 50%; box-shadow: var(--shadow-sm); rotate: var(--sticker-tilt); animation: pop var(--speed-slow) var(--ease-bounce) calc(5 * var(--stagger)) backwards; }
 
-/* ───────── Tarjetas ───────── */
+/* ───────── Cards ───────── */
 .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--card-min), 1fr)); gap: var(--space-4); }
 .card { display: flex; flex-direction: column; background: var(--white); border: var(--border); box-shadow: var(--shadow); padding: var(--space-4); margin: 0; }
 .error-box { background: var(--ketchup); color: var(--white); border: var(--border); box-shadow: var(--shadow); padding: var(--space-4); font-weight: var(--fw-bold); }
 
-/* Filtros de la carta */
+/* Menu filters */
 .filters { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-4); }
 .chip-btn { min-height: var(--touch); padding: 0 var(--space-3); font: inherit; font-weight: var(--fw-bold); text-transform: uppercase; color: var(--ink); background: var(--white); border: var(--border); box-shadow: var(--shadow-sm); cursor: pointer; transition: transform var(--speed), box-shadow var(--speed); }
 .chip-btn:hover { transform: translate(calc(-1 * var(--lift)), calc(-1 * var(--lift))); }
@@ -112,9 +112,9 @@ a { color: inherit; }
 .chip-icon { display: inline-block; transition: transform var(--speed-slow) var(--ease-bounce); }
 .chip-btn:hover .chip-icon, .chip-btn[aria-pressed="true"] .chip-icon { transform: rotate(var(--icon-wiggle)) scale(var(--icon-scale)); }
 
-/* Carta */
+/* Menu */
 .menu-item { position: relative; transition: transform var(--speed), box-shadow var(--speed); }
-/* Elevar al hover / hundir al pulsar: adaptado de Uiverse.io (0xnihilism, MIT). */
+/* Lift on hover / press on click: adapted from Uiverse.io (0xnihilism, MIT). */
 .menu-item:hover { transform: translate(calc(-1 * var(--lift)), calc(-1 * var(--lift))); box-shadow: calc(var(--offset) + var(--lift)) calc(var(--offset) + var(--lift)) 0 var(--ink); }
 .menu-item:active { transform: translate(var(--press), var(--press)); box-shadow: 0 0 0 var(--ink); }
 .menu-item.is-favorite:hover { box-shadow: var(--shadow-lg); }
@@ -132,7 +132,7 @@ a { color: inherit; }
 .pop { animation: pop var(--speed-slow) var(--ease-bounce); }
 @keyframes pop { from { transform: scale(0.9); opacity: 0; } }
 
-/* Ilustraciones de los platos (js/art.js) */
+/* Dish illustrations (js/art.js) */
 .dish-frame { display: block; overflow: hidden; height: var(--dish-h); margin-bottom: var(--space-3); border: var(--bw-thin) solid var(--ink); background: var(--cream); }
 .dish-burgers { background: var(--cream); }
 .dish-sides { background: var(--danger-bg); }
@@ -166,13 +166,13 @@ a { color: inherit; }
 .a-lemon-lines { fill: none; stroke-width: var(--svg-hair); }
 .a-mint { fill: var(--lettuce); }
 
-/* Por qué Brutus */
+/* Why Brutus */
 .reason:nth-child(3n+1) { background: var(--ketchup); color: var(--white); }
 .reason:nth-child(3n+2) { background: var(--lettuce); }
 .reason:nth-child(3n) { background: var(--bun); }
 .reason-num { font-family: var(--font-mono); font-size: var(--fs-xl); font-weight: var(--fw-black); line-height: 1; margin-bottom: var(--space-3); }
 
-/* Reseñas */
+/* Reviews */
 .stars { margin-bottom: var(--space-2); font-size: var(--fs-lg); color: var(--ketchup); letter-spacing: var(--space-1); }
 .review-text { flex: 1; font-size: var(--fs-lg); font-weight: var(--fw-bold); }
 .review-author { display: flex; align-items: center; gap: var(--space-3); }
@@ -180,7 +180,7 @@ a { color: inherit; }
 .review-author .role { font-size: var(--fs-sm); color: var(--muted); }
 .avatar { display: grid; place-items: center; flex: none; width: var(--touch); height: var(--touch); font-weight: var(--fw-black); background: var(--mustard); border: var(--border); border-radius: 50%; }
 
-/* ───────── Ubicación ───────── */
+/* ───────── Location ───────── */
 .location { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-4); }
 .address { font-size: var(--fs-lg); font-weight: var(--fw-bold); margin-top: var(--space-3); }
 .hours { width: 100%; border-collapse: collapse; }
@@ -242,7 +242,7 @@ a { color: inherit; }
 .consent input:checked + .check::after { scale: 1; }
 .consent input:focus-visible + .check { outline: var(--bw) solid var(--mustard); outline-offset: var(--focus-offset); }
 .consent input[aria-invalid="true"] + .check { outline: var(--bw) solid var(--ketchup); outline-offset: var(--focus-offset); }
-.hp { position: absolute; left: calc(-100 * var(--space-6)); } /* honeypot anti-bots */
+.hp { position: absolute; left: calc(-100 * var(--space-6)); } /* anti-bot honeypot */
 .form-msg { min-height: var(--space-4); margin: 0; font-weight: var(--fw-bold); background: var(--white); color: var(--ink); padding: var(--space-1) var(--space-2); display: inline-block; }
 .form-msg:empty { display: none; }
 .form-msg.error { background: var(--ketchup); color: var(--white); }
@@ -251,7 +251,7 @@ a { color: inherit; }
 .privacy summary { cursor: pointer; font-weight: var(--fw-bold); text-decoration: underline; }
 .privacy p { margin-top: var(--space-2); font-size: var(--fs-sm); }
 
-/* ───────── Cinta de anuncios ───────── */
+/* ───────── Announcement ticker ───────── */
 .ticker { overflow: hidden; background: var(--ink); color: var(--mustard); border-top: var(--border); }
 .ticker-track { display: flex; width: max-content; animation: ticker var(--ticker-speed) linear infinite; }
 .ticker:hover .ticker-track { animation-play-state: paused; }
@@ -259,7 +259,7 @@ a { color: inherit; }
 .ticker span::after { content: "✦"; margin-left: var(--space-4); color: var(--ketchup); }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
-/* ───────── La leyenda ───────── */
+/* ───────── The legend ───────── */
 .legend { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 0.8fr); align-items: start; gap: var(--space-4); }
 .legend-copy .lead { font-family: var(--font-display); text-transform: uppercase; }
 .engraving { margin: 0; padding: var(--space-3); background: var(--white); border: var(--border); box-shadow: var(--shadow); rotate: var(--tilt-a); transition: rotate var(--speed-slow) var(--ease-bounce), scale var(--speed-slow) var(--ease-bounce), box-shadow var(--speed); }
@@ -283,7 +283,7 @@ a { color: inherit; }
 .skel-line.short { width: 70%; }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
-/* ───────── Aparición al hacer scroll (solo con JS) ───────── */
+/* ───────── Reveal on scroll (JS only) ───────── */
 .js .reveal { opacity: 0; transform: translateY(var(--space-5)); transition: opacity var(--speed-slow) var(--ease-out), transform var(--speed-slow) var(--ease-out); }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 

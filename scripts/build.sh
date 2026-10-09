@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copia a _site/ SOLO lo que se publica: supabase/, test/, docs y configs nunca salen del repo.
+# Copies ONLY what gets published into _site/: supabase/, test/, docs and configs never leave the repo.
 set -eu
 rm -rf _site
 mkdir -p _site/js

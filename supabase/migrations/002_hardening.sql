@@ -1,12 +1,12 @@
--- Endurecimiento posterior a 001.
+-- Hardening on top of 001.
 
--- Registro del consentimiento explícito (la Edge Function exige consent = true).
+-- Record explicit consent (the Edge Function requires consent = true).
 alter table public.subscribers add column if not exists consented_at timestamptz not null default now();
 
--- Igual que subscribers: RLS forzado también para el dueño de la tabla.
+-- Same as subscribers: RLS forced for the table owner too.
 alter table public.rate_limits force row level security;
 
--- Limpieza: sin esto, rate_limits crece con cada IP/correo nuevo para siempre.
+-- Cleanup: without this, rate_limits grows forever with every new IP/email.
 create index if not exists rate_limits_window_start_idx on public.rate_limits (window_start);
 
 create extension if not exists pg_cron;

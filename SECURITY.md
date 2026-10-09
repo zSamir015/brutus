@@ -1,20 +1,24 @@
-# Seguridad (sitio estático + Supabase)
+# Security (static site + Supabase)
 
-| # | Punto | Estado |
+| # | Topic | Status |
 |---|-------|--------|
-| 1 | Exposición cero | Al navegador solo llegan la URL de funciones y la anon key (`js/config.js`). `.env*` está ignorado; `.env.example` documenta qué es público y qué privado. El build (`scripts/build.sh`) publica solo `index.html`, `css/`, `js/` (sin ejemplos), `data/` y `assets/`. |
-| 2 | Gestión de secretos | `js/config.js` (modo demo) está versionado; al desplegar, el workflow lo sobrescribe desde GitHub Secrets. `SERVICE_ROLE_KEY` vive solo en `supabase secrets`. |
-| 3 | Almacenamiento | La página no guarda tokens ni datos sensibles (ni en localStorage). |
-| 4 | Entrada | Cliente: limpia caracteres de control y espacios, regex, máximo 254, honeypot y consentimiento obligatorio. DOM solo con `textContent`. Servidor: Zod `.strict()` con `consent: true` literal. |
-| 5 | Auth | No aplica: no hay login. |
-| 6 | Validación en servidor | La Edge Function `subscribe` revalida todo; el cliente nunca es de confianza. |
-| 7 | Rate limiting | Cliente: 3/min (solo UX). Servidor, en tres capas: global 120/min, por IP 5/min y por correo 3/min. Si la RPC falla, se bloquea. |
-| 8 | IP del cliente | Se usa la **última** entrada de `X-Forwarded-For` (la que añade el proxy), no la primera (falsificable), o la cabecera de `TRUSTED_IP_HEADER`. **Verifícalo tras desplegar** enviando un `X-Forwarded-For` falso: el límite por IP no debe cambiar. El límite global protege aunque la IP se falsifique. |
-| 9 | RLS | `subscribers` y `rate_limits`: RLS forzado, sin políticas, permisos revocados a anon y authenticated. Solo el service role escribe. `pg_cron` purga `rate_limits` cada 15 min. |
-| 10 | CORS / TLS / CSP | CORS con lista de orígenes (`ALLOWED_ORIGINS`), nunca `*`. GitHub Pages sirve HTTPS; el cliente rechaza un `functionsUrl` sin HTTPS. CSP en `<meta>` sin `unsafe-inline`. |
-| 11 | Privacidad | Consentimiento explícito con casilla y aviso de privacidad; se guarda `consented_at`. |
+| 1 | Zero exposure | Only the functions URL and the anon key reach the browser (`js/config.js`). `.env*` is ignored; `.env.example` documents what is public and what is private. The build (`scripts/build.sh`) publishes only `index.html`, `css/`, `js/` (no examples), `data/` and `assets/`. |
+| 2 | Secret management | `js/config.js` (demo mode) is committed; on deploy the workflow overwrites it from GitHub Secrets. `SERVICE_ROLE_KEY` lives only in `supabase secrets`. |
+| 3 | Storage | The page stores no tokens or sensitive data (not even in localStorage). |
+| 4 | Input | Client: strips control characters and whitespace, regex check, 254-character limit, honeypot and mandatory consent. DOM built only with `textContent`. Server: Zod `.strict()` with a literal `consent: true`. |
+| 5 | Auth | Not applicable: there is no login. |
+| 6 | Server-side validation | The `subscribe` Edge Function re-validates everything; the client is never trusted. |
+| 7 | Rate limiting | Client: 3 per minute (UX only). Server, in three layers: global 120/min, per IP 5/min and per email 3/min. If the RPC fails, the request is blocked. |
+| 8 | Client IP | Uses the **last** `X-Forwarded-For` entry (the one appended by the proxy), not the first (which can be forged), or the header named in `TRUSTED_IP_HEADER`. **Verify after deploying** by sending a fake `X-Forwarded-For`: the per-IP limit must not change. The global limit still protects even if the IP is spoofed. |
+| 9 | RLS | `subscribers` and `rate_limits`: RLS forced, no policies, privileges revoked from anon and authenticated. Only the service role writes. `pg_cron` purges `rate_limits` every 15 minutes. |
+| 10 | CORS / TLS / CSP | CORS with an allowlist (`ALLOWED_ORIGINS`), never `*`. GitHub Pages serves HTTPS; the client rejects a non-HTTPS `functionsUrl`. CSP in a `<meta>` tag with no `unsafe-inline`. |
+| 11 | Privacy | Explicit consent via a checkbox and a privacy notice; `consented_at` is stored. |
 
-## Limitaciones conocidas
+## Known limitations
 
-- GitHub Pages no permite cabeceras HTTP: `frame-ancestors` y HSTS no se pueden fijar (la CSP va en `<meta>`).
-- No hay doble opt-in. Para un negocio real, conviene enviar un correo de confirmación antes de activar la suscripción.
+- GitHub Pages does not allow custom HTTP headers, so `frame-ancestors` and HSTS cannot be set (the CSP lives in `<meta>`).
+- There is no double opt-in. A real business should send a confirmation email before activating a subscription.
+
+## Reporting a problem
+
+If you find a security issue, please open an issue in this repository or contact the author through [GitHub](https://github.com/zSamir015).

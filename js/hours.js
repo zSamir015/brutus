@@ -1,18 +1,18 @@
-// Horario del local. Funciones puras (se prueban con node --test).
-// El estado "abierto / cerrado" se calcula en la zona horaria del local, no en la del visitante.
+// Opening hours. Pure functions (tested with node --test).
+// "Open / closed" is computed in the restaurant's time zone, not the visitor's.
 
-/** 'HH:MM' -> minutos desde medianoche. '24:00' = cierre a medianoche. */
+/** 'HH:MM' -> minutes since midnight. '24:00' means closing at midnight. */
 export const toMinutes = (hhmm) => {
   const [h, m] = hhmm.split(':').map(Number);
   return h * 60 + m;
 };
 
-/** Para mostrar: '24:00' se lee como '00:00'. */
+/** For display: '24:00' reads as '00:00'. */
 export const formatTime = (hhmm) => (hhmm === '24:00' ? '00:00' : hhmm);
 
 const WEEKDAYS = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
 
-/** Día (0 = domingo) y minutos actuales en `timeZone`. */
+/** Current day (0 = Sunday) and minutes in `timeZone`. */
 export function localTime(date, timeZone) {
   const parts = Object.fromEntries(
     new Intl.DateTimeFormat('en-US', { timeZone, weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
@@ -36,7 +36,7 @@ export function openStatus(hours, { day, minutes }) {
   for (let i = 0; i < 7; i++) {
     const h = byDay((day + i) % 7);
     if (!h?.open) continue;
-    if (i === 0 && minutes >= toMinutes(h.open)) continue; // hoy ya pasó la apertura
+    if (i === 0 && minutes >= toMinutes(h.open)) continue; // today's opening time has already passed
     return { open: false, opensAt: h.open, inDays: i };
   }
   return { open: false, opensAt: null, inDays: null };
