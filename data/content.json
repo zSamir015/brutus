@@ -1,15 +1,38 @@
 {
-  "features": [
-    { "title": "Rápido", "text": "Carga en segundos." },
-    { "title": "Seguro", "text": "Tus datos, protegidos." },
-    { "title": "Claro", "text": "Sin pasos de más." }
+  "reasons": [
+    { "title": "Carne 100 % res", "text": "Molida cada mañana, nunca congelada. 180 g por medalla." },
+    { "title": "Pan del día", "text": "Brioche horneado en casa, tostado a la plancha con mantequilla." },
+    { "title": "Salsas de la casa", "text": "La Salsa Brutus es secreta. Ni el Senado conoce la receta." }
   ],
-  "plans": [
-    { "name": "Básico", "price": "$9/mes", "perks": ["Uso personal", "Soporte email"] },
-    { "name": "Pro", "price": "$19/mes", "perks": ["Equipos", "Soporte prioritario", "Reportes"] }
+  "menu": [
+    { "name": "La Brutus", "category": "burgers", "price": 12.9, "favorite": true, "tags": [], "text": "Doble carne, doble cheddar, tocino crujiente y Salsa Brutus." },
+    { "name": "César", "category": "burgers", "price": 10.5, "favorite": false, "tags": [], "text": "Pollo crispy, lechuga romana, parmesano y aderezo César." },
+    { "name": "Coliseo", "category": "burgers", "price": 15.9, "favorite": false, "tags": [], "text": "Triple carne, triple queso. Solo para valientes." },
+    { "name": "Gladiador", "category": "burgers", "price": 11.9, "favorite": false, "tags": ["picante"], "text": "Jalapeños asados, pepper jack y mayo de chipotle." },
+    { "name": "Senado Veggie", "category": "burgers", "price": 10.9, "favorite": false, "tags": ["veggie"], "text": "Medallón de lentejas y remolacha, aguacate y cebolla morada." },
+    { "name": "Papas Brutas", "category": "sides", "price": 4.5, "favorite": false, "tags": ["veggie"], "text": "Corte grueso, doble fritura, sal de romero." },
+    { "name": "Aros de cebolla", "category": "sides", "price": 4.9, "favorite": false, "tags": ["veggie"], "text": "Rebozados en cerveza, con salsa ranch." },
+    { "name": "Alitas Vesubio", "category": "sides", "price": 7.9, "favorite": false, "tags": ["picante"], "text": "Seis alitas bañadas en salsa que hace erupción." },
+    { "name": "Malteada de vainilla", "category": "drinks", "price": 5.5, "favorite": false, "tags": [], "text": "Helado artesanal, crema batida y una cereza." },
+    { "name": "Limonada de menta", "category": "drinks", "price": 3.0, "favorite": false, "tags": [], "text": "Recién exprimida, con hielo frappé." }
   ],
-  "testimonials": [
-    { "quote": "Cambió mi forma de trabajar.", "author": "Cliente satisfecho" },
-    { "quote": "Soporte rápido, gran calidad.", "author": "Otro cliente" }
+  "reviews": [
+    { "author": "Valentina R.", "role": "Clienta desde el día uno", "rating": 5, "text": "La Brutus me cambió la vida. Literal: ahora vivo a dos cuadras." },
+    { "author": "Diego M.", "role": "Crítico gastronómico aficionado", "rating": 5, "text": "Las Papas Brutas deberían ser patrimonio de la humanidad." },
+    { "author": "Ana P.", "role": "Vegetariana convencida", "rating": 4, "text": "La Senado Veggie es la primera hamburguesa sin carne que pido dos veces." }
+  ],
+  "location": {
+    "address": "Av. del Imperio 44, Ciudad Ficticia",
+    "phone": "+000 0000-0000",
+    "timezone": "America/Panama"
+  },
+  "hours": [
+    { "day": 1, "open": null, "close": null },
+    { "day": 2, "open": "12:00", "close": "22:00" },
+    { "day": 3, "open": "12:00", "close": "22:00" },
+    { "day": 4, "open": "12:00", "close": "22:00" },
+    { "day": 5, "open": "12:00", "close": "24:00" },
+    { "day": 6, "open": "12:00", "close": "24:00" },
+    { "day": 0, "open": "12:00", "close": "20:00" }
   ]
 }
