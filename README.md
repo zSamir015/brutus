@@ -6,7 +6,7 @@
 
 **[Ver demo en vivo →](https://zsamir015.github.io/brutus/)**
 
-Landing page neo-brutalista para una hamburguesería **ficticia**. Proyecto de portfolio: HTML, CSS y JavaScript vanilla en el frontend, y un backend opcional en Supabase para la suscripción al "Club Brutus".
+Landing page neo-brutalista para una hamburguesería **ficticia** en Costa del Este, Panamá. Proyecto de portfolio: HTML, CSS y JavaScript vanilla en el frontend, y un backend opcional en Supabase para la suscripción al "Club Brutus".
 
 ![Demo: la hamburguesa se arma, filtro de la carta, horario y suscripción](docs/media/demo.gif)
 
@@ -17,8 +17,9 @@ Landing page neo-brutalista para una hamburguesería **ficticia**. Proyecto de p
 ## Características
 
 - **Diseño neo-brutalista**: bordes de 3 px, sombras sólidas sin desenfoque y una hamburguesa ilustrada en SVG que se arma capa por capa.
-- **Carta filtrable** por categoría, con la favorita destacada y etiquetas (picante, veggie).
+- **Carta filtrable** por categoría, con una ilustración propia en SVG por plato, la favorita destacada y etiquetas (picante, veggie).
 - **Horario en vivo**: "Abierto ahora / Cerrado" calculado en la zona horaria del local, no en la del visitante.
+- **Ubicación ilustrada**: fachada del local y mapa ficticio de Costa del Este (Av. Paseo del Mar, Corredor Sur, Bahía de Panamá).
 - **Skeleton loaders** mientras carga el contenido, y aparición de secciones al hacer scroll.
 - **Club Brutus**: formulario con validación, consentimiento explícito, honeypot anti-bots y throttle de UX.
 - **Accesible**: skip link, ARIA, objetivos táctiles de 44 px o más, anuncios `aria-live` y `prefers-reduced-motion` respetado.
@@ -42,6 +43,7 @@ index.html
 css/tokens.css          Único origen de diseño: colores, espaciado, tipografía, movimiento
 css/styles.css          Estilos; solo consumen tokens
 js/app.js               Menú, render del contenido, filtro, horario, formulario
+js/art.js               Ilustraciones SVG de los platos (createElementNS, compatible con la CSP)
 js/validate.js          Validación del formulario (pura, con tests)
 js/hours.js             Cálculo de "abierto / cerrado" (puro, con tests)
 js/config.js            Modo demo; el workflow lo sobrescribe al desplegar

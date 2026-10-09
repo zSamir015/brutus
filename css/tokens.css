@@ -13,6 +13,12 @@
   --cheese: #ffb703;
   --muted: #5c524a;
   --danger-bg: #ffe3df;
+  --sea: #3f8fd2;
+  --sky: #cfe8f7;
+  --tower: #9fb3c4;
+  --chicken: #d9922e;
+  --beet: #a8324a;
+  --jalapeno: #2e7d32;
 
   /* Skeleton */
   --skel-base: #efe2c8;
@@ -60,6 +66,16 @@
   --svg-stroke: 7;
   --svg-stroke-thin: 4;
   --svg-road: 22;
+  --svg-highway: 18;
+  --svg-art: 3.5;
+  --svg-hair: 2;
+  --svg-seed: 1.5;
+  --svg-trunk: 9;
+  --svg-text-sm: 22px;
+  --svg-text-md: 26px;
+  --svg-tracking: 2px;
+  --dish-h: 7.5rem;
+  --dish-tilt: -5deg;
   --svg-label: 13px;
   --sticker: 6.5rem;
   --sticker-tilt: 12deg;

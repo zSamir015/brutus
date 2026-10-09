@@ -1,5 +1,6 @@
 import { createThrottle, validateSubscription } from './validate.js';
 import { formatTime, localTime, openStatus } from './hours.js';
+import { renderArt } from './art.js';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -52,6 +53,12 @@ const renderers = {
     const card = el('article', `card menu-item${item.favorite ? ' is-favorite' : ''}`);
     card.dataset.category = item.category;
     if (item.favorite) card.append(el('span', 'badge', 'La favorita'));
+    const art = renderArt(item.art);
+    if (art) {
+      const frame = el('div', `dish-frame dish-${item.category}`);
+      frame.append(art);
+      card.append(frame);
+    }
     const head = el('div', 'menu-head');
     head.append(el('h3', '', item.name), el('p', 'price', money.format(item.price)));
     card.append(head, el('p', 'menu-text', item.text));
@@ -165,7 +172,9 @@ fetch('data/content.json', { credentials: 'omit' })
       box.replaceChildren(...items.map(renderers[key]));
       settle(box);
     }
-    $('[data-address]').textContent = data.location.address;
+    const address = $('[data-address]');
+    address.replaceChildren(el('span', 'address-main', data.location.address), el('span', 'address-area', data.location.area));
+    $('[data-location-note]').textContent = data.location.note;
     renderHours(data.hours, data.location.timezone);
     setInterval(() => renderHours(data.hours, data.location.timezone), 60_000);
     // El contenido cargado desplaza las secciones: si se llegó con #ancla, se vuelve a ella.

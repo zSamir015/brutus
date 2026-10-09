@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://*.supabase.co; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Brutus Burgers — Grande. Grasosa. Sin disculpas.</title>
-  <meta name="description" content="Brutus Burgers: hamburguesas a la plancha con carne 100 % res, pan del día y salsas de la casa. Landing neo-brutalista de portfolio (negocio ficticio).">
+  <meta name="description" content="Brutus Burgers: hamburguesas a la plancha en Costa del Este, Panamá, con carne 100 % res, pan del día y salsas de la casa. Landing neo-brutalista de portfolio (negocio ficticio).">
   <meta name="theme-color" content="#ffc93c">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
@@ -136,29 +136,59 @@
     </section>
 
     <section id="ubicacion" class="reveal" aria-labelledby="location-title">
-      <h2 id="location-title">Dónde estamos</h2>
+      <h2 id="location-title">Dónde estamos: Costa del Este</h2>
       <div class="location">
         <div class="location-info card">
           <p class="status" data-status></p>
           <p class="address" data-address></p>
+          <p class="location-note" data-location-note></p>
           <table class="hours">
             <caption>Horario</caption>
             <tbody data-hours></tbody>
           </table>
         </div>
-        <svg class="map card" viewBox="0 0 400 300" role="img" aria-labelledby="map-title">
-          <title id="map-title">Mapa ilustrado: Brutus Burgers en la esquina de la Av. del Imperio</title>
-          <rect class="map-block" x="20" y="20" width="150" height="100" />
-          <rect class="map-block" x="230" y="20" width="150" height="100" />
-          <rect class="map-block" x="20" y="180" width="150" height="100" />
-          <rect class="map-park" x="230" y="180" width="150" height="100" />
-          <path class="map-road" d="M0 150 H400 M200 0 V300" />
-          <text class="map-label" x="12" y="143">AV. DEL IMPERIO</text>
-          <g class="map-pin">
-            <path d="M200 92 C176 92 166 110 166 124 C166 146 200 172 200 172 C200 172 234 146 234 124 C234 110 224 92 200 92 Z" />
-            <circle cx="200" cy="124" r="11" />
-          </g>
-        </svg>
+        <div class="location-art">
+          <svg class="storefront card" viewBox="0 0 400 260" role="img" aria-labelledby="front-title">
+            <title id="front-title">Ilustración de la fachada de Brutus Burgers: toldo a rayas rojas, letrero amarillo y torres de Costa del Este al fondo</title>
+            <rect class="f-sky" x="0" y="0" width="400" height="260" />
+            <rect class="f-tower" x="18" y="20" width="46" height="200" />
+            <rect class="f-tower" x="70" y="48" width="36" height="172" />
+            <rect class="f-tower" x="300" y="10" width="40" height="210" />
+            <rect class="f-tower" x="346" y="40" width="40" height="180" />
+            <path class="f-tower-lines" d="M26 40 H56 M26 60 H56 M26 80 H56 M26 100 H56 M308 30 H332 M308 50 H332 M308 70 H332 M308 90 H332 M354 60 H378 M354 80 H378" />
+            <path class="f-palm-trunk" d="M350 236 Q342 190 352 150" />
+            <path class="f-palm-leaf" d="M352 150 Q330 132 312 146 Q332 140 352 150 Q340 122 356 112 Q356 132 352 150 Q372 126 392 138 Q370 140 352 150 Z" />
+            <rect class="f-wall" x="86" y="92" width="228" height="146" />
+            <rect class="f-sign" x="118" y="56" width="164" height="40" />
+            <text class="f-sign-text" x="200" y="84" text-anchor="middle">BRUTUS</text>
+            <path class="f-awning-a" d="M86 100 H114 V124 Q100 134 86 124 Z M142 100 H170 V124 Q156 134 142 124 Z M198 100 H226 V124 Q212 134 198 124 Z M254 100 H282 V124 Q268 134 254 124 Z" />
+            <path class="f-awning-b" d="M114 100 H142 V124 Q128 134 114 124 Z M170 100 H198 V124 Q184 134 170 124 Z M226 100 H254 V124 Q240 134 226 124 Z M282 100 H314 V124 Q298 134 282 124 Z" />
+            <rect class="f-window" x="102" y="146" width="62" height="54" />
+            <rect class="f-window" x="236" y="146" width="62" height="54" />
+            <rect class="f-door" x="180" y="152" width="40" height="86" />
+            <circle class="f-knob" cx="212" cy="196" r="3.5" />
+            <rect class="f-ground" x="0" y="238" width="400" height="22" />
+          </svg>
+          <svg class="map card" viewBox="0 0 400 300" role="img" aria-labelledby="map-title">
+            <title id="map-title">Mapa ilustrado y ficticio: Brutus Burgers en la Av. Paseo del Mar, Costa del Este, junto al Corredor Sur y la Bahía de Panamá</title>
+            <rect class="map-land" x="0" y="0" width="400" height="300" />
+            <rect class="map-block" x="22" y="20" width="160" height="70" />
+            <rect class="map-block" x="236" y="20" width="142" height="70" />
+            <rect class="map-park" x="22" y="108" width="160" height="60" />
+            <rect class="map-block" x="236" y="108" width="142" height="60" />
+            <path class="map-water" d="M0 222 Q100 200 200 216 T400 206 V300 H0 Z" />
+            <path class="map-highway" d="M0 194 Q120 172 220 188 T400 178" />
+            <path class="map-road" d="M209 0 V186" />
+            <path class="map-road" d="M0 99 H400" />
+            <text class="map-label" x="16" y="186">CORREDOR SUR</text>
+            <text class="map-label" x="218" y="16">AV. PASEO DEL MAR</text>
+            <text class="map-label map-label-water" x="200" y="268" text-anchor="middle">BAHÍA DE PANAMÁ</text>
+            <g class="map-pin">
+              <path d="M209 48 C187 48 178 64 178 77 C178 97 209 120 209 120 C209 120 240 97 240 77 C240 64 231 48 209 48 Z" />
+              <circle cx="209" cy="77" r="10" />
+            </g>
+          </svg>
+        </div>
       </div>
     </section>
 

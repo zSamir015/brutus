@@ -21,6 +21,8 @@ p { margin: 0 0 var(--space-3); }
 ul { margin: 0 0 var(--space-3); padding-left: var(--space-4); }
 section { max-width: var(--max-width); margin: 0 auto; padding: var(--space-6) var(--space-3); }
 a { color: inherit; }
+/* El atributo hidden debe ganar a cualquier display de componente (p. ej. .card { display: flex }). */
+[hidden] { display: none !important; }
 
 /* ───────── Accesibilidad ───────── */
 :focus-visible { outline: var(--bw) solid var(--ketchup); outline-offset: var(--focus-offset); }
@@ -130,6 +132,40 @@ a { color: inherit; }
 .pop { animation: pop var(--speed-slow) var(--ease-bounce); }
 @keyframes pop { from { transform: scale(0.9); opacity: 0; } }
 
+/* Ilustraciones de los platos (js/art.js) */
+.dish-frame { display: block; overflow: hidden; height: var(--dish-h); margin-bottom: var(--space-3); border: var(--bw-thin) solid var(--ink); background: var(--cream); }
+.dish-burgers { background: var(--cream); }
+.dish-sides { background: var(--danger-bg); }
+.dish-drinks { background: var(--sky); }
+.is-favorite .dish-frame { background: var(--white); }
+.dish-art { display: block; width: 100%; height: 100%; padding: var(--space-2); overflow: visible; transition: transform var(--speed-slow) var(--ease-bounce); }
+.menu-item:hover .dish-art { transform: rotate(var(--dish-tilt)) scale(1.08); }
+.dish-art * { stroke: var(--ink); stroke-width: var(--svg-art); stroke-linejoin: round; stroke-linecap: round; }
+.a-bun { fill: var(--bun); }
+.a-seed { fill: var(--cream); stroke-width: var(--svg-seed); }
+.a-lettuce { fill: var(--lettuce); }
+.a-cheese { fill: var(--cheese); }
+.a-patty { fill: var(--patty); }
+.a-patty-chicken { fill: var(--chicken); }
+.a-patty-veggie { fill: var(--beet); }
+.a-jalapeno { fill: var(--jalapeno); }
+.a-fry { fill: var(--mustard); }
+.a-carton { fill: var(--ketchup); }
+.a-carton-label { fill: var(--white); stroke: none; font-family: var(--font-display); font-size: var(--svg-text-sm); }
+.a-ring { fill: var(--bun); }
+.a-hole { fill: var(--danger-bg); }
+.a-wing { fill: var(--chicken); }
+.a-bone { fill: var(--cream); }
+.a-straw { fill: var(--ketchup); }
+.a-cream, .a-cup { fill: var(--white); }
+.a-cherry { fill: var(--ketchup); }
+.a-stripe { fill: none; stroke: var(--ketchup); }
+.a-glass { fill: var(--white); }
+.a-lemonade { fill: var(--mustard); }
+.a-lemon { fill: var(--cheese); }
+.a-lemon-lines { fill: none; stroke-width: var(--svg-hair); }
+.a-mint { fill: var(--lettuce); }
+
 /* Por qué Brutus */
 .reason:nth-child(3n+1) { background: var(--ketchup); color: var(--white); }
 .reason:nth-child(3n+2) { background: var(--lettuce); }
@@ -154,7 +190,30 @@ a { color: inherit; }
 .hours td { font-family: var(--font-mono); }
 .hours .is-today { background: var(--mustard); }
 .today-tag { margin-left: var(--space-2); padding: 0 var(--space-1); font-size: var(--fs-sm); color: var(--white); background: var(--ink); }
-.map { padding: 0; width: 100%; height: 100%; min-height: var(--map-min); background: var(--lettuce); }
+.location-art { display: grid; gap: var(--space-4); }
+.address-main, .address-area { display: block; }
+.address-area { font-size: var(--fs-md); font-weight: var(--fw-bold); color: var(--muted); }
+.location-note { font-size: var(--fs-sm); font-style: italic; color: var(--muted); }
+.storefront, .map { display: block; padding: 0; width: 100%; height: auto; }
+.storefront * { stroke: var(--ink); stroke-width: var(--svg-stroke-thin); stroke-linejoin: round; }
+.f-sky { fill: var(--sky); stroke: none !important; }
+.f-tower { fill: var(--tower); }
+.f-tower-lines { fill: none; stroke-width: var(--svg-hair) !important; }
+.f-palm-trunk { fill: none; stroke: var(--patty) !important; stroke-width: var(--svg-trunk) !important; stroke-linecap: round; }
+.f-palm-leaf { fill: var(--lettuce); }
+.f-wall { fill: var(--white); }
+.f-sign { fill: var(--ink); }
+.f-sign-text { fill: var(--mustard); stroke: none !important; font-family: var(--font-display); font-size: var(--svg-text-md); letter-spacing: var(--svg-tracking); }
+.f-awning-a { fill: var(--ketchup); }
+.f-awning-b { fill: var(--white); }
+.f-window { fill: var(--sky); }
+.f-door { fill: var(--mustard); }
+.f-knob { fill: var(--ink); }
+.f-ground { fill: var(--bun); }
+.map-land { fill: var(--cream); }
+.map-water { fill: var(--sea); stroke: var(--ink); stroke-width: var(--svg-stroke-thin); }
+.map-highway { fill: none; stroke: var(--mustard); stroke-width: var(--svg-highway); }
+.map-label-water { fill: var(--white); }
 .map-block { fill: var(--cream); stroke: var(--ink); stroke-width: var(--svg-stroke-thin); }
 .map-park { fill: var(--lettuce); stroke: var(--ink); stroke-width: var(--svg-stroke-thin); }
 .map-road { fill: none; stroke: var(--white); stroke-width: var(--svg-road); }
