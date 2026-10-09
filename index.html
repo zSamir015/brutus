@@ -42,6 +42,12 @@
       </ul>
     </nav>
     <div class="nav-backdrop" hidden></div>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>2×1 los martes</span><span>Carne 100 % res</span><span>Pan horneado hoy</span><span>Et tu, Brute?</span><span>Salsa Brutus secreta</span>
+        <span>2×1 los martes</span><span>Carne 100 % res</span><span>Pan horneado hoy</span><span>Et tu, Brute?</span><span>Salsa Brutus secreta</span>
+      </div>
+    </div>
   </header>
 
   <main id="main">
@@ -52,8 +58,8 @@
           <h1>Grande.<br>Grasosa.<br><span class="hl">Sin disculpas.</span></h1>
           <p class="lead">Hamburguesas a la plancha que no piden permiso. <em>Et tu, Brute?</em></p>
           <div class="hero-actions">
-            <a href="#menu" class="btn btn-primary">Ver la carta</a>
-            <a href="#ubicacion" class="btn btn-secondary">Cómo llegar</a>
+            <a href="#menu" class="btn btn-primary"><span class="btn-icon" aria-hidden="true">🍔</span>Ver la carta</a>
+            <a href="#ubicacion" class="btn btn-secondary"><span class="btn-icon" aria-hidden="true">📍</span>Cómo llegar</a>
           </div>
           <p class="status" data-status aria-live="polite"></p>
         </div>
@@ -91,10 +97,10 @@
     <section id="menu" class="reveal" aria-labelledby="menu-title">
       <h2 id="menu-title">La carta</h2>
       <div class="filters" role="group" aria-label="Filtrar la carta">
-        <button type="button" class="chip-btn" data-filter="all" aria-pressed="true">Todo</button>
-        <button type="button" class="chip-btn" data-filter="burgers" aria-pressed="false">Hamburguesas</button>
-        <button type="button" class="chip-btn" data-filter="sides" aria-pressed="false">Acompañantes</button>
-        <button type="button" class="chip-btn" data-filter="drinks" aria-pressed="false">Bebidas</button>
+        <button type="button" class="chip-btn" data-filter="all" aria-pressed="true"><span class="chip-icon" aria-hidden="true">✦</span>Todo</button>
+        <button type="button" class="chip-btn" data-filter="burgers" aria-pressed="false"><span class="chip-icon" aria-hidden="true">🍔</span>Hamburguesas</button>
+        <button type="button" class="chip-btn" data-filter="sides" aria-pressed="false"><span class="chip-icon" aria-hidden="true">🍟</span>Acompañantes</button>
+        <button type="button" class="chip-btn" data-filter="drinks" aria-pressed="false"><span class="chip-icon" aria-hidden="true">🥤</span>Bebidas</button>
       </div>
       <p class="sr-only" data-filter-status aria-live="polite"></p>
       <div class="card-grid" data-list="menu" aria-busy="true"></div>
@@ -103,6 +109,25 @@
     <section id="por-que" class="reveal" aria-labelledby="why-title">
       <h2 id="why-title">Por qué Brutus</h2>
       <div class="card-grid" data-list="reasons" aria-busy="true"></div>
+    </section>
+
+    <section id="leyenda" class="reveal" aria-labelledby="legend-title">
+      <h2 id="legend-title">La leyenda</h2>
+      <div class="legend">
+        <div class="legend-copy">
+          <p class="lead">Bruto traicionó a César en el 44 a. C.</p>
+          <p>Nosotros juramos no traicionarte jamás con una hamburguesa congelada. Cada medalla se forma a mano, se sella a la plancha y llega a tu mesa como llegaban los gladiadores a la arena: <strong>sin miedo y sin disculpas</strong>.</p>
+          <a href="#club" class="btn btn-primary"><span class="btn-icon" aria-hidden="true">⚔️</span>Únete al Club</a>
+        </div>
+        <figure class="engraving engraving-main">
+          <img src="assets/leech-gladiator.jpg" width="640" height="777" loading="lazy" decoding="async" alt="Caricatura de un gladiador romano con guantes de boxeo conversando con su patrocinador, que fuma un cigarro.">
+          <figcaption>«Early Roman Gladiator and his Patron». John Leech, <cite>The Comic History of Rome</cite>, c. 1850.</figcaption>
+        </figure>
+        <figure class="engraving engraving-side">
+          <img src="assets/leech-tarquinius.jpg" width="640" height="646" loading="lazy" decoding="async" alt="Caricatura coloreada de una pelea en el Senado romano: un rey con cetro observa mientras varios senadores caen por las escaleras.">
+          <figcaption>«Tarquinius Superbus Makes Himself King». John Leech, c. 1850.</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section id="resenas" class="reveal" aria-labelledby="reviews-title">
@@ -147,9 +172,10 @@
           <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <label class="consent">
             <input type="checkbox" name="consent" required aria-describedby="privacy-note">
+            <span class="check" aria-hidden="true"></span>
             <span>Acepto recibir promociones por correo y he leído el aviso de privacidad.</span>
           </label>
-          <button type="submit" class="btn btn-primary">Unirme al club</button>
+          <button type="submit" class="btn btn-primary"><span class="btn-icon" aria-hidden="true">🍔</span>Unirme al club</button>
           <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
         </form>
         <details class="privacy" id="privacy-note">
@@ -163,6 +189,7 @@
 
   <footer class="site-footer">
     <p>&copy; 2026 Brutus Burgers · <strong>Proyecto de portfolio — negocio ficticio.</strong></p>
+    <p class="credits">Ilustraciones: John Leech, <cite>The Comic History of Rome</cite> (c. 1850), dominio público vía <a href="https://pdimagearchive.org/">Public Domain Image Archive</a>. Textura de papel derivada de <a href="https://texturelabs.org/">Texture Labs</a>. Animaciones adaptadas de <a href="https://uiverse.io/">Uiverse</a> (MIT).</p>
     <p><a href="https://github.com/zSamir015/brutus">Código en GitHub</a></p>
   </footer>
 </body>

@@ -168,6 +168,8 @@ fetch('data/content.json', { credentials: 'omit' })
     $('[data-address]').textContent = data.location.address;
     renderHours(data.hours, data.location.timezone);
     setInterval(() => renderHours(data.hours, data.location.timezone), 60_000);
+    // El contenido cargado desplaza las secciones: si se llegó con #ancla, se vuelve a ella.
+    if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
   })
   .catch(() => {
     containers.forEach(showError);
