@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://*.supabase.co; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Brutus Burgers — Grande. Grasosa. Sin disculpas.</title>
+  <meta name="description" content="Brutus Burgers: hamburguesas a la plancha en Costa del Este, Panamá, con carne 100 % res, pan del día y salsas de la casa. Landing neo-brutalista de portfolio (negocio ficticio).">
+  <meta name="theme-color" content="#ffc93c">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Brutus Burgers">
+  <meta property="og:title" content="Brutus Burgers — Grande. Grasosa. Sin disculpas.">
+  <meta property="og:description" content="Hamburguesas que no piden permiso. Landing neo-brutalista de portfolio (negocio ficticio).">
+  <meta property="og:url" content="https://zsamir015.github.io/brutus/">
+  <meta property="og:image" content="https://zsamir015.github.io/brutus/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Hamburguesa ilustrada en estilo neo-brutalista junto al logo de Brutus Burgers">
+  <meta property="og:locale" content="es_PA">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/config.js" defer></script>
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Navegación principal">
+      <a href="#hero" class="logo" aria-label="Brutus Burgers, inicio">Brutus<span aria-hidden="true">🍔</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menú</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#menu">La carta</a></li>
+        <li><a href="#por-que">Por qué</a></li>
+        <li><a href="#resenas">Reseñas</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a href="#club" class="nav-cta">Club</a></li>
+      </ul>
+    </nav>
+    <div class="nav-backdrop" hidden></div>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>2×1 los martes</span><span>Carne 100 % res</span><span>Pan horneado hoy</span><span>Et tu, Brute?</span><span>Salsa Brutus secreta</span>
+        <span>2×1 los martes</span><span>Carne 100 % res</span><span>Pan horneado hoy</span><span>Et tu, Brute?</span><span>Salsa Brutus secreta</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="hero" class="hero">
+      <div class="hero-box">
+        <div class="hero-copy">
+          <p class="kicker">Hamburguesería · Desde 2026</p>
+          <h1>Grande.<br>Grasosa.<br><span class="hl">Sin disculpas.</span></h1>
+          <p class="lead">Hamburguesas a la plancha que no piden permiso. <em>Et tu, Brute?</em></p>
+          <div class="hero-actions">
+            <a href="#menu" class="btn btn-primary"><span class="btn-icon" aria-hidden="true">🍔</span>Ver la carta</a>
+            <a href="#ubicacion" class="btn btn-secondary"><span class="btn-icon" aria-hidden="true">📍</span>Cómo llegar</a>
+          </div>
+          <p class="status" data-status aria-live="polite"></p>
+        </div>
+
+        <div class="hero-art">
+          <svg class="burger" viewBox="0 0 400 340" role="img" aria-labelledby="burger-title">
+            <title id="burger-title">Hamburguesa ilustrada: pan, lechuga, queso y carne</title>
+            <g class="layer layer-0">
+              <path class="bun" d="M40 262 H360 Q360 318 300 318 H100 Q40 318 40 262 Z" />
+            </g>
+            <g class="layer layer-1">
+              <rect class="patty" x="34" y="190" width="332" height="66" rx="30" />
+            </g>
+            <g class="layer layer-2">
+              <path class="cheese" d="M34 176 H366 V198 H332 L320 226 L308 198 H210 L198 232 L186 198 H74 L64 218 L54 198 H34 Z" />
+            </g>
+            <g class="layer layer-3">
+              <path class="lettuce" d="M28 164 Q48 142 68 164 T108 164 T148 164 T188 164 T228 164 T268 164 T308 164 T348 164 T372 164 L372 182 L28 182 Z" />
+            </g>
+            <g class="layer layer-4">
+              <path class="bun" d="M40 156 Q40 34 200 34 Q360 34 360 156 Z" />
+              <ellipse class="seed" cx="140" cy="84" rx="9" ry="5" transform="rotate(-20 140 84)" />
+              <ellipse class="seed" cx="200" cy="66" rx="9" ry="5" />
+              <ellipse class="seed" cx="258" cy="88" rx="9" ry="5" transform="rotate(18 258 88)" />
+              <ellipse class="seed" cx="108" cy="122" rx="9" ry="5" transform="rotate(-30 108 122)" />
+              <ellipse class="seed" cx="296" cy="124" rx="9" ry="5" transform="rotate(28 296 124)" />
+              <ellipse class="seed" cx="196" cy="108" rx="9" ry="5" transform="rotate(8 196 108)" />
+            </g>
+          </svg>
+          <p class="sticker" aria-hidden="true">100 %<br>res</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="reveal" aria-labelledby="menu-title">
+      <h2 id="menu-title">La carta</h2>
+      <div class="filters" role="group" aria-label="Filtrar la carta">
+        <button type="button" class="chip-btn" data-filter="all" aria-pressed="true"><span class="chip-icon" aria-hidden="true">✦</span>Todo</button>
+        <button type="button" class="chip-btn" data-filter="burgers" aria-pressed="false"><span class="chip-icon" aria-hidden="true">🍔</span>Hamburguesas</button>
+        <button type="button" class="chip-btn" data-filter="sides" aria-pressed="false"><span class="chip-icon" aria-hidden="true">🍟</span>Acompañantes</button>
+        <button type="button" class="chip-btn" data-filter="drinks" aria-pressed="false"><span class="chip-icon" aria-hidden="true">🥤</span>Bebidas</button>
+      </div>
+      <p class="sr-only" data-filter-status aria-live="polite"></p>
+      <div class="card-grid" data-list="menu" aria-busy="true"></div>
+    </section>
+
+    <section id="por-que" class="reveal" aria-labelledby="why-title">
+      <h2 id="why-title">Por qué Brutus</h2>
+      <div class="card-grid" data-list="reasons" aria-busy="true"></div>
+    </section>
+
+    <section id="leyenda" class="reveal" aria-labelledby="legend-title">
+      <h2 id="legend-title">La leyenda</h2>
+      <div class="legend">
+        <div class="legend-copy">
+          <p class="lead">Bruto traicionó a César en el 44 a. C.</p>
+          <p>Nosotros juramos no traicionarte jamás con una hamburguesa congelada. Cada medalla se forma a mano, se sella a la plancha y llega a tu mesa como llegaban los gladiadores a la arena: <strong>sin miedo y sin disculpas</strong>.</p>
+          <a href="#club" class="btn btn-primary"><span class="btn-icon" aria-hidden="true">⚔️</span>Únete al Club</a>
+        </div>
+        <figure class="engraving engraving-main">
+          <img src="assets/leech-gladiator.jpg" width="640" height="777" loading="lazy" decoding="async" alt="Caricatura de un gladiador romano con guantes de boxeo conversando con su patrocinador, que fuma un cigarro.">
+          <figcaption>«Early Roman Gladiator and his Patron». John Leech, <cite>The Comic History of Rome</cite>, c. 1850.</figcaption>
+        </figure>
+        <figure class="engraving engraving-side">
+          <img src="assets/leech-tarquinius.jpg" width="640" height="646" loading="lazy" decoding="async" alt="Caricatura coloreada de una pelea en el Senado romano: un rey con cetro observa mientras varios senadores caen por las escaleras.">
+          <figcaption>«Tarquinius Superbus Makes Himself King». John Leech, c. 1850.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="resenas" class="reveal" aria-labelledby="reviews-title">
+      <h2 id="reviews-title">Reseñas</h2>
+      <div class="card-grid" data-list="reviews" aria-busy="true"></div>
+    </section>
+
+    <section id="ubicacion" class="reveal" aria-labelledby="location-title">
+      <h2 id="location-title">Dónde estamos: Costa del Este</h2>
+      <div class="location">
+        <div class="location-info card">
+          <p class="status" data-status></p>
+          <p class="address" data-address></p>
+          <p class="location-note" data-location-note></p>
+          <table class="hours">
+            <caption>Horario</caption>
+            <tbody data-hours></tbody>
+          </table>
+        </div>
+        <div class="location-art">
+          <svg class="storefront card" viewBox="0 0 400 260" role="img" aria-labelledby="front-title">
+            <title id="front-title">Ilustración de la fachada de Brutus Burgers: toldo a rayas rojas, letrero amarillo y torres de Costa del Este al fondo</title>
+            <rect class="f-sky" x="0" y="0" width="400" height="260" />
+            <rect class="f-tower" x="18" y="20" width="46" height="200" />
+            <rect class="f-tower" x="70" y="48" width="36" height="172" />
+            <rect class="f-tower" x="300" y="10" width="40" height="210" />
+            <rect class="f-tower" x="346" y="40" width="40" height="180" />
+            <path class="f-tower-lines" d="M26 40 H56 M26 60 H56 M26 80 H56 M26 100 H56 M308 30 H332 M308 50 H332 M308 70 H332 M308 90 H332 M354 60 H378 M354 80 H378" />
+            <path class="f-palm-trunk" d="M350 236 Q342 190 352 150" />
+            <path class="f-palm-leaf" d="M352 150 Q330 132 312 146 Q332 140 352 150 Q340 122 356 112 Q356 132 352 150 Q372 126 392 138 Q370 140 352 150 Z" />
+            <rect class="f-wall" x="86" y="92" width="228" height="146" />
+            <rect class="f-sign" x="118" y="56" width="164" height="40" />
+            <text class="f-sign-text" x="200" y="84" text-anchor="middle">BRUTUS</text>
+            <path class="f-awning-a" d="M86 100 H114 V124 Q100 134 86 124 Z M142 100 H170 V124 Q156 134 142 124 Z M198 100 H226 V124 Q212 134 198 124 Z M254 100 H282 V124 Q268 134 254 124 Z" />
+            <path class="f-awning-b" d="M114 100 H142 V124 Q128 134 114 124 Z M170 100 H198 V124 Q184 134 170 124 Z M226 100 H254 V124 Q240 134 226 124 Z M282 100 H314 V124 Q298 134 282 124 Z" />
+            <rect class="f-window" x="102" y="146" width="62" height="54" />
+            <rect class="f-window" x="236" y="146" width="62" height="54" />
+            <rect class="f-door" x="180" y="152" width="40" height="86" />
+            <circle class="f-knob" cx="212" cy="196" r="3.5" />
+            <rect class="f-ground" x="0" y="238" width="400" height="22" />
+          </svg>
+          <svg class="map card" viewBox="0 0 400 300" role="img" aria-labelledby="map-title">
+            <title id="map-title">Mapa ilustrado y ficticio: Brutus Burgers en la Av. Paseo del Mar, Costa del Este, junto al Corredor Sur y la Bahía de Panamá</title>
+            <rect class="map-land" x="0" y="0" width="400" height="300" />
+            <rect class="map-block" x="22" y="20" width="160" height="70" />
+            <rect class="map-block" x="236" y="20" width="142" height="70" />
+            <rect class="map-park" x="22" y="108" width="160" height="60" />
+            <rect class="map-block" x="236" y="108" width="142" height="60" />
+            <path class="map-water" d="M0 222 Q100 200 200 216 T400 206 V300 H0 Z" />
+            <path class="map-highway" d="M0 194 Q120 172 220 188 T400 178" />
+            <path class="map-road" d="M209 0 V186" />
+            <path class="map-road" d="M0 99 H400" />
+            <text class="map-label" x="16" y="186">CORREDOR SUR</text>
+            <text class="map-label" x="218" y="16">AV. PASEO DEL MAR</text>
+            <text class="map-label map-label-water" x="200" y="268" text-anchor="middle">BAHÍA DE PANAMÁ</text>
+            <g class="map-pin">
+              <path d="M209 48 C187 48 178 64 178 77 C178 97 209 120 209 120 C209 120 240 97 240 77 C240 64 231 48 209 48 Z" />
+              <circle cx="209" cy="77" r="10" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="club" class="reveal" aria-labelledby="club-title">
+      <div class="cta-box">
+        <h2 id="club-title">Club Brutus</h2>
+        <p class="cta-lead">Promos, lanzamientos y el 2×1 de los martes. Sin spam: solo carne.</p>
+        <form class="cta-form" id="subscribe-form" novalidate>
+          <label for="email">Correo</label>
+          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" maxlength="254" required placeholder="tu@email.com" aria-describedby="form-msg">
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="consent">
+            <input type="checkbox" name="consent" required aria-describedby="privacy-note">
+            <span class="check" aria-hidden="true"></span>
+            <span>Acepto recibir promociones por correo y he leído el aviso de privacidad.</span>
+          </label>
+          <button type="submit" class="btn btn-primary"><span class="btn-icon" aria-hidden="true">🍔</span>Unirme al club</button>
+          <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+        </form>
+        <details class="privacy" id="privacy-note">
+          <summary>Aviso de privacidad</summary>
+          <p>Solo guardamos tu correo para enviarte promociones del Club Brutus. No lo compartimos con nadie y puedes darte de baja cuando quieras.</p>
+          <p>Este sitio es un proyecto de portfolio: el formulario funciona en modo demo y <strong>no guarda ningún dato</strong>.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Brutus Burgers · <strong>Proyecto de portfolio — negocio ficticio.</strong></p>
+    <p class="credits">Ilustraciones: John Leech, <cite>The Comic History of Rome</cite> (c. 1850), dominio público vía <a href="https://pdimagearchive.org/">Public Domain Image Archive</a>. Textura de papel derivada de <a href="https://texturelabs.org/">Texture Labs</a>. Animaciones adaptadas de <a href="https://uiverse.io/">Uiverse</a> (MIT).</p>
+    <p><a href="https://github.com/zSamir015/brutus">Código en GitHub</a></p>
+  </footer>
+</body>
+</html>
