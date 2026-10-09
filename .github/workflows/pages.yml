@@ -1,30 +1,55 @@
 name: Deploy Pages
+
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
 permissions:
   contents: read
-  pages: write
-  id-token: write
-concurrency: { group: pages, cancel-in-progress: true }
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
-    environment: { name: github-pages, url: "${{ steps.deployment.outputs.page_url }}" }
     steps:
       - uses: actions/checkout@v4
-      # Genera js/config.js con valores PÚBLICOS desde GitHub Secrets (no se versionan en el repo).
-      # Si los secretos no existen, queda el config.js demo del repo.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build _site
+        run: sh scripts/build.sh
+
+      # Sobrescribe js/config.js con valores PÚBLICOS desde GitHub Secrets (si existen).
+      # Si no existen, se publica el config.js de modo demo del repo.
       - name: Generate config.js
         env:
           FUNCTIONS_URL: ${{ secrets.SUPABASE_FUNCTIONS_URL }}
           ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           if [ -n "$FUNCTIONS_URL" ] && [ -n "$ANON_KEY" ]; then
-            printf 'window.APP_CONFIG = { functionsUrl: "%s", anonKey: "%s" };\n' "$FUNCTIONS_URL" "$ANON_KEY" > js/config.js
+            printf 'window.APP_CONFIG = { functionsUrl: "%s", anonKey: "%s" };\n' "$FUNCTIONS_URL" "$ANON_KEY" > _site/js/config.js
           fi
-      - run: rm -rf supabase .github js/config.example.js
+
       - uses: actions/upload-pages-artifact@v3
-        with: { path: . }
+        with:
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
