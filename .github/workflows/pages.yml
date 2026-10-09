@@ -1,5 +1,8 @@
 name: Deploy Pages
 
+# Construye _site/ (solo archivos públicos) y lo publica en la rama gh-pages,
+# que GitHub Pages sirve. supabase/, test/, docs y configs nunca llegan a esa rama.
+
 on:
   push:
     branches: [main]
@@ -26,11 +29,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -48,8 +47,14 @@ jobs:
             printf 'window.APP_CONFIG = { functionsUrl: "%s", anonKey: "%s" };\n' "$FUNCTIONS_URL" "$ANON_KEY" > _site/js/config.js
           fi
 
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      # Rama huérfana con un solo commit: sin historial que crezca ni archivos antiguos.
+      - name: Publish to gh-pages
+        working-directory: _site
+        run: |
+          touch .nojekyll
+          git init -q -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Deploy ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
