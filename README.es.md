@@ -44,11 +44,11 @@ Demo: https://zsamir015.github.io/brutus/
 
 No hay framework ni bundler. `index.html` carga directamente unos pocos módulos ES, así que la página pesa pocos kilobytes de código y carga sin ningún paso de build.
 
-- **Tokens de diseño.** `css/tokens.css` es la única fuente de colores, espaciado, tipografía y movimiento. `css/styles.css` solo usa esas variables, así que el sistema visual se cambia en un solo sitio.
-- **Contenido como datos.** El menú, las reseñas, la ubicación y el horario están en `data/content.json`. `js/app.js` lo descarga y construye la página, así que cambiar un precio o el horario no obliga a tocar el HTML.
-- **DOM construido de forma segura.** Los elementos se crean con `createElement` y se rellenan con `textContent`. Las ilustraciones de `js/art.js` se construyen con `createElementNS`, lo que las mantiene compatibles con una Content Security Policy estricta.
-- **Lógica pura en módulos propios.** La validación del formulario (`js/validate.js`) y la lógica del horario (`js/hours.js`) no dependen del DOM, y por eso se pueden probar solo con Node.
-- **Zonas horarias.** El horario se evalúa en `America/Panama` con `Intl.DateTimeFormat`, así que un visitante en otro país ve si el restaurante está abierto en ese momento.
+- `css/tokens.css` reúne todos los tokens de diseño: colores, espaciado, tipografía y movimiento. `css/styles.css` solo lee esas variables, así que el sistema visual se cambia en un solo sitio.
+- El menú, las reseñas, la ubicación y el horario están en `data/content.json`. `js/app.js` lo descarga y construye la página, así que cambiar un precio o el horario no obliga a tocar el HTML.
+- Los elementos se crean con `createElement` y se rellenan con `textContent`. Las ilustraciones de `js/art.js` se construyen con `createElementNS`, lo que las mantiene compatibles con una Content Security Policy estricta.
+- La validación del formulario (`js/validate.js`) y la lógica del horario (`js/hours.js`) no dependen del DOM, y por eso se pueden probar solo con Node.
+- El horario se evalúa en `America/Panama` con `Intl.DateTimeFormat`, así que un visitante en otro país ve si el restaurante está abierto en ese momento.
 
 ## Backend de suscripción
 

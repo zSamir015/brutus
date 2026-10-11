@@ -44,11 +44,11 @@ Live demo: https://zsamir015.github.io/brutus/
 
 There is no framework and no bundler. `index.html` loads a handful of ES modules directly, so the page is a few kilobytes of code and loads without any build step.
 
-- **Design tokens.** `css/tokens.css` is the single source for colours, spacing, typography and motion. `css/styles.css` only consumes those variables, so the visual system can be changed in one place.
-- **Content as data.** The menu, reviews, location and opening hours live in `data/content.json`. `js/app.js` fetches it and builds the page, so changing a price or the hours does not mean editing HTML.
-- **DOM built safely.** Elements are created with `createElement` and filled with `textContent`. The dish illustrations in `js/art.js` are built with `createElementNS`, which keeps them compatible with a strict Content Security Policy.
-- **Pure logic in its own modules.** Form validation (`js/validate.js`) and the opening-hours logic (`js/hours.js`) have no DOM dependencies, which is what makes them testable with Node alone.
-- **Time zones.** Opening hours are evaluated in `America/Panama` with `Intl.DateTimeFormat`, so a visitor in another country still sees whether the restaurant is open right now.
+- `css/tokens.css` holds every design token: colours, spacing, typography and motion. `css/styles.css` only reads those variables, so the visual system changes in one place.
+- The menu, reviews, location and opening hours live in `data/content.json`. `js/app.js` fetches it and builds the page, so changing a price or the hours does not mean editing HTML.
+- Elements are created with `createElement` and filled with `textContent`. The dish illustrations in `js/art.js` are built with `createElementNS`, which keeps them compatible with a strict Content Security Policy.
+- Form validation (`js/validate.js`) and the opening-hours logic (`js/hours.js`) have no DOM dependencies, which is what makes them testable with Node alone.
+- Opening hours are evaluated in `America/Panama` with `Intl.DateTimeFormat`, so a visitor in another country still sees whether the restaurant is open right now.
 
 ## Signup backend
 
