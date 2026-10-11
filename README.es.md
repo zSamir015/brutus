@@ -1,107 +1,147 @@
-# Brutus Burgers 🍔
-
-🌐 [English](README.md) · **Español**
+# Brutus Burgers
 
 [![Deploy](https://github.com/zSamir015/brutus/actions/workflows/pages.yml/badge.svg)](https://github.com/zSamir015/brutus/actions/workflows/pages.yml)
 [![Lighthouse](https://github.com/zSamir015/brutus/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/zSamir015/brutus/actions/workflows/lighthouse.yml)
-[![Licencia MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**[Ver demo en vivo →](https://zsamir015.github.io/brutus/)**
+[English](README.md) | Español
 
-Landing page neo-brutalista para una hamburguesería **ficticia** en Costa del Este, Panamá. Proyecto de portfolio: HTML, CSS y JavaScript vanilla en el frontend, y un backend opcional en Supabase para la suscripción al "Club Brutus".
+Brutus Burgers es la landing page de una hamburguesería ficticia en Costa del Este, Panamá, con estilo neo-brutalista. El frontend es HTML, CSS y módulos de JavaScript, sin frameworks ni herramientas de build. El formulario de suscripción puede usar Supabase de forma opcional, mediante una Edge Function que valida los datos y limita las peticiones. Los textos del sitio están en español porque el negocio está en Panamá.
 
-![Demo: la hamburguesa se arma, filtro de la carta, horario y suscripción](docs/media/demo.gif)
+Demo: https://zsamir015.github.io/brutus/
 
-## Qué demuestra este proyecto
+![La hamburguesa armándose, el filtro del menú, el horario y el formulario de suscripción](docs/media/demo.gif)
 
-- **Frontend sin frameworks**: HTML semántico, CSS con tokens de diseño y JavaScript en módulos, sin build.
-- **Accesibilidad real**: navegación por teclado, ARIA, movimiento reducido y contraste verificado con Lighthouse.
-- **Seguridad de punta a punta**: CSP estricta en el cliente; RLS, validación y rate limiting en el servidor.
-- **Calidad automatizada**: tests unitarios, Lighthouse en CI y despliegue continuo a GitHub Pages.
-
-| Escritorio | Móvil |
-|---|---|
+| Escritorio                                  | Móvil                                |
+| ------------------------------------------- | ------------------------------------ |
 | ![Vista de escritorio](docs/media/desktop.png) | ![Vista móvil](docs/media/mobile.png) |
 
-## Características
+## Contenido
 
-- **Diseño neo-brutalista**: bordes de 3 px, sombras sólidas sin desenfoque y una hamburguesa ilustrada en SVG que se arma capa por capa.
-- **Carta filtrable** por categoría, con una ilustración propia en SVG por plato, la favorita destacada y etiquetas (picante, veggie).
-- **Horario en vivo**: "Abierto ahora / Cerrado" calculado en la zona horaria del local, no en la del visitante.
-- **Ubicación ilustrada**: fachada del local y mapa ficticio de Costa del Este (Av. Paseo del Mar, Corredor Sur, Bahía de Panamá).
-- **Skeleton loaders** mientras carga el contenido, y aparición de secciones al hacer scroll.
-- **Club Brutus**: formulario con validación, consentimiento explícito, honeypot anti-bots y throttle de UX.
-- **Accesible**: skip link, ARIA, objetivos táctiles de 44 px o más, anuncios `aria-live` y `prefers-reduced-motion` respetado.
-- **Seguro**: CSP estricta sin `unsafe-inline`, DOM construido solo con `textContent` y sin secretos en el frontend.
-- **Detalles de UI animados**: cinta de anuncios, brillo que cruza los botones, iconos que giran, tarjetas que se elevan y se hunden, casilla con marca animada y grabados que se enderezan al pasar el mouse.
-- **La leyenda**: grabados humorísticos de la Roma antigua de John Leech (c. 1850, dominio público) sobre fondo de papel.
+- [Funciones](#funciones)
+- [Cómo está hecho el frontend](#cómo-está-hecho-el-frontend)
+- [Backend de suscripción](#backend-de-suscripción)
+- [Seguridad](#seguridad)
+- [Accesibilidad](#accesibilidad)
+- [Tests, CI y despliegue](#tests-ci-y-despliegue)
+- [Ejecutarlo en local](#ejecutarlo-en-local)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Limitaciones](#limitaciones)
+- [Créditos](#créditos)
+- [Licencia](#licencia)
 
-## Stack
+## Funciones
 
-| Capa | Tecnología |
-|---|---|
-| Frontend | HTML, CSS (tokens de diseño), JavaScript ES modules, sin build ni dependencias |
-| Backend (opcional) | Supabase: Postgres con RLS + Edge Function en Deno con Zod |
-| Calidad | Tests con `node --test`, Lighthouse CI (accesibilidad ≥ 95) |
-| Despliegue | GitHub Actions → GitHub Pages |
+- Una hamburguesa en SVG en la portada que se arma capa por capa.
+- Menú filtrable por categoría, con una ilustración SVG hecha a mano para cada plato, un favorito destacado y etiquetas como picante o vegetariano.
+- "Abierto ahora" o "Cerrado", calculado en la zona horaria del restaurante y no en la del visitante.
+- Una fachada ilustrada y un mapa estilizado de Costa del Este.
+- Esqueletos de carga mientras llega el contenido, y secciones que aparecen al hacer scroll.
+- El formulario del "Club Brutus", con validación, consentimiento explícito, un campo trampa para bots y un límite de intentos en el navegador.
+- Detalles de interfaz: una cinta de anuncios, un brillo que recorre los botones, tarjetas que se elevan y se hunden, una casilla animada y grabados de John Leech de 1850 (dominio público) que se enderezan al pasar el ratón.
 
-## Estructura
+## Cómo está hecho el frontend
 
-```
-index.html
-css/tokens.css          Único origen de diseño: colores, espaciado, tipografía, movimiento
-css/styles.css          Estilos; solo consumen tokens
-js/app.js               Menú, render del contenido, filtro, horario, formulario
-js/art.js               Ilustraciones SVG de los platos (createElementNS, compatible con la CSP)
-js/validate.js          Validación del formulario (pura, con tests)
-js/hours.js             Cálculo de "abierto / cerrado" (puro, con tests)
-js/config.js            Modo demo; el workflow lo sobrescribe al desplegar
-data/content.json       Carta, reseñas, ubicación y horario
-supabase/               Migraciones SQL y Edge Function `subscribe`
-scripts/build.sh        Copia a _site/ solo lo que se publica
-```
+No hay framework ni bundler. `index.html` carga directamente unos pocos módulos ES, así que la página pesa pocos kilobytes de código y carga sin ningún paso de build.
 
-## Ejecutar en local
+- **Tokens de diseño.** `css/tokens.css` es la única fuente de colores, espaciado, tipografía y movimiento. `css/styles.css` solo usa esas variables, así que el sistema visual se cambia en un solo sitio.
+- **Contenido como datos.** El menú, las reseñas, la ubicación y el horario están en `data/content.json`. `js/app.js` lo descarga y construye la página, así que cambiar un precio o el horario no obliga a tocar el HTML.
+- **DOM construido de forma segura.** Los elementos se crean con `createElement` y se rellenan con `textContent`. Las ilustraciones de `js/art.js` se construyen con `createElementNS`, lo que las mantiene compatibles con una Content Security Policy estricta.
+- **Lógica pura en módulos propios.** La validación del formulario (`js/validate.js`) y la lógica del horario (`js/hours.js`) no dependen del DOM, y por eso se pueden probar solo con Node.
+- **Zonas horarias.** El horario se evalúa en `America/Panama` con `Intl.DateTimeFormat`, así que un visitante en otro país ve si el restaurante está abierto en ese momento.
 
-```bash
-npm run dev      # python3 -m http.server 8000 (el fetch y los módulos no funcionan desde file://)
-npm test         # tests de validación y horario
-npm run build    # genera _site/ como en producción
-```
+## Backend de suscripción
 
-## Decisiones técnicas
+El backend es opcional. Sin él, `js/config.js` deja el sitio en modo demo: el formulario valida y confirma, pero no guarda nada.
 
-- **Sin frameworks ni build.** La página pesa pocos KB y carga sin pasos intermedios.
-- **Contenido en JSON.** Cambiar la carta o el horario no requiere tocar HTML.
-- **El horario usa la zona del local** (`America/Panama`, con `Intl.DateTimeFormat`), así un visitante en otro país ve el estado correcto.
-- **El servidor nunca confía en el cliente.** La Edge Function revalida con Zod, exige consentimiento y aplica rate limiting en tres capas (global, por IP y por correo).
-- **RLS sin políticas.** Las tablas son inaccesibles con la anon key; solo la Edge Function (service role) escribe.
+Con él, el formulario envía los datos a una Edge Function de Supabase, `subscribe`, escrita en TypeScript para Deno:
 
-Detalles y checklist en [SECURITY.md](SECURITY.md) (en inglés).
+1. Solo responde a peticiones de los orígenes indicados en el secreto `ALLOWED_ORIGINS`.
+2. Aplica límites en tres capas, cada una con una ventana fija de un minuto: 120 suscripciones en total, 5 por IP y 3 por email. El límite global no se puede saltar cambiando de IP, y el límite por email impide usar el formulario para inundar un buzón. Si la comprobación del límite falla, la petición se rechaza.
+3. Valida el cuerpo con Zod: un email recortado y en minúsculas de como mucho 254 caracteres, y un `consent` que tiene que ser exactamente `true`.
+4. Inserta el email en `subscribers` con la fecha del consentimiento. La inserción ignora duplicados, así que la respuesta nunca revela si una dirección ya estaba suscrita.
 
-## Backend (opcional)
+En la base de datos, `subscribers` y `rate_limits` tienen Row Level Security forzada y ninguna política, y todos los privilegios están revocados para `anon` y `authenticated`. Las tablas son inaccesibles con la anon key pública; solo la Edge Function, con el rol de servicio, puede escribir. El contador de límites es una función de Postgres (`check_rate_limit`) que solo puede ejecutar el rol de servicio, y un job de `pg_cron` borra cada 15 minutos las entradas de más de una hora para que la tabla no crezca sin fin.
 
-Sin backend, el formulario funciona en **modo demo**: valida, pero no guarda nada. Para activarlo:
+Para activarlo en tu propio proyecto de Supabase:
 
-```bash
+```sh
 supabase db push
 supabase secrets set SERVICE_ROLE_KEY=... ALLOWED_ORIGINS=https://zsamir015.github.io
 supabase functions deploy subscribe
 ```
 
-Después añade `SUPABASE_FUNCTIONS_URL` y `SUPABASE_ANON_KEY` en GitHub → Settings → Secrets and variables → Actions. El workflow genera `js/config.js` con esos valores públicos al desplegar.
+Después añade `SUPABASE_FUNCTIONS_URL` y `SUPABASE_ANON_KEY` como secretos del repositorio (Settings, Secrets and variables, Actions). El workflow de despliegue escribe esos dos valores públicos en `js/config.js`.
+
+## Seguridad
+
+- Content Security Policy estricta, sin `unsafe-inline` para scripts ni estilos.
+- Nada de lo que escribe el usuario se inserta como HTML.
+- Ningún secreto en el frontend. Lo único que ve el navegador es la URL de las Functions y la anon key, que son públicas por diseño; la clave del rol de servicio solo existe como secreto de Supabase.
+- El servidor nunca confía en el cliente: la validación, el consentimiento y los límites se vuelven a aplicar en la Edge Function.
+
+En [SECURITY.md](SECURITY.md) está la lista completa y cómo reportar un problema.
+
+## Accesibilidad
+
+Enlace para saltar al contenido, landmarks semánticos, ARIA donde la semántica nativa no basta, zonas táctiles de al menos 44 px, anuncios `aria-live` para el resultado del formulario y soporte de `prefers-reduced-motion` en todas las animaciones. Lighthouse comprueba la accesibilidad en cada push y pull request.
+
+## Tests, CI y despliegue
+
+```sh
+npm test   # node --test, sin dependencias
+```
+
+Los tests cubren los módulos puros: limpieza y validación del email, los datos de la suscripción, el límite de intentos en el navegador y la lógica del horario, incluida la zona horaria del restaurante.
+
+Dos workflows de GitHub Actions se encargan del resto:
+
+- **Deploy** (`pages.yml`), en cada push a `main`: ejecuta los tests, genera `_site/` con `scripts/build.sh` (que copia solo los archivos públicos, así que `supabase/`, `test/` y la documentación nunca se publican), escribe `js/config.js` a partir de los secretos del repositorio si existen y publica `_site/` como un único commit en la rama `gh-pages`.
+- **Lighthouse** (`lighthouse.yml`), en cada push a `main` y en cada pull request: genera `_site/` y lo audita tres veces. Accesibilidad por debajo de 95, o buenas prácticas o SEO por debajo de 90, hacen fallar la ejecución; rendimiento por debajo de 90 se reporta como aviso.
+
+## Ejecutarlo en local
+
+```sh
+npm run dev     # python3 -m http.server 8000 (fetch y los módulos no funcionan desde file://)
+npm test
+npm run build   # genera _site/ igual que el despliegue
+```
+
+## Estructura del proyecto
+
+```
+index.html              marcado de la página y Content Security Policy
+css/tokens.css          tokens de diseño: colores, espaciado, tipografía, movimiento
+css/styles.css          estilos, construidos solo con los tokens
+js/app.js               renderizado del contenido, filtro del menú, horario, formulario
+js/art.js               ilustraciones SVG de los platos
+js/validate.js          validación del formulario y límite de intentos (puro, con tests)
+js/hours.js             lógica de abierto o cerrado (pura, con tests)
+js/config.js            configuración del modo demo; se reemplaza al desplegar si hay secretos
+data/content.json       menú, reseñas, ubicación y horario
+supabase/migrations/    tablas, RLS, función de límites y job de limpieza
+supabase/functions/     la Edge Function subscribe
+scripts/build.sh        copia solo los archivos públicos a _site/
+test/                   suites de node --test
+```
+
+## Limitaciones
+
+- El sitio solo está en español, a propósito, porque el negocio está en Panamá.
+- Los tests automáticos cubren solo la lógica pura. El comportamiento del DOM (el filtro del menú, los estados del formulario) y la Edge Function se prueban a mano; el siguiente paso serían tests de navegador con Playwright y tests en Deno para la función.
+- Sin el backend opcional, el formulario funciona en modo demo y no guarda nada.
 
 ## Créditos
 
-- Animaciones de UI adaptadas de [Uiverse.io](https://uiverse.io/) (autor: 0xnihilism, licencia MIT).
-- Ilustraciones de John Leech, *The Comic History of Rome* (c. 1850), dominio público vía [Public Domain Image Archive](https://pdimagearchive.org/).
+- Animaciones de interfaz adaptadas de [Uiverse.io](https://uiverse.io/) (autor: 0xnihilism, licencia MIT).
+- Ilustraciones de John Leech, _The Comic History of Rome_ (c. 1850), dominio público, a través del [Public Domain Image Archive](https://pdimagearchive.org/).
 - Textura de papel derivada de [Texture Labs](https://texturelabs.org/).
-- Inspiración de diseño: galerías de neo-brutalismo en [Dribbble](https://dribbble.com/search/neo-brutalism-food) (solo referencia; no se copió ningún diseño).
+- Referencias de diseño de galerías neo-brutalistas en [Dribbble](https://dribbble.com/search/neo-brutalism-food), usadas solo como inspiración.
 
-Detalles y licencias en [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) (en inglés).
+Los detalles y licencias están en [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## Licencia
 
-El código es [MIT](LICENSE) © 2026 Samir Lorenzo. Los recursos de terceros conservan sus licencias (ver [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)); en particular, `assets/paper-grain.jpg` **no** está bajo MIT.
+El código está bajo [licencia MIT](LICENSE), © 2026 Samir Lorenzo. Los recursos de terceros mantienen sus propias licencias (ver [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)); en particular, `assets/paper-grain.jpg` no está cubierto por la licencia MIT.
 
-*Brutus Burgers es un negocio ficticio creado para este portfolio.*
+Brutus Burgers es un negocio ficticio creado para este portafolio.
