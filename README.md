@@ -94,9 +94,11 @@ npm test   # node --test, no dependencies
 
 The tests cover the pure modules: email sanitising and validation, the signup payload, the client-side throttle, and the opening-hours logic, including the restaurant's time zone.
 
-Two GitHub Actions workflows run the rest:
+Three GitHub Actions workflows run the rest:
 
-- **Deploy** (`pages.yml`), on every push to `main`: runs the tests, builds `_site/` with `scripts/build.sh` (which copies only the public files, so `supabase/`, `test/` and the docs are never published), writes `js/config.js` from the repository secrets if they are set, and publishes `_site/` as a single commit on the `gh-pages` branch.
+- **Tests** (`test.yml`), on every push to `main` and every pull request: runs `npm test`.
+
+- **Deploy** (`pages.yml`), on every push to `main`: runs the tests, builds `_site/` with `scripts/build.sh` (which copies only the public files, so `supabase/`, `test/` and the docs are never published), writes `js/config.js` from the repository secrets if they are set, and publishes `_site/` with GitHub Pages' own deploy action. Only the deploy job can write, and only to Pages, not to the repository.
 - **Lighthouse** (`lighthouse.yml`), on every push to `main` and every pull request: builds `_site/` and audits it three times. Accessibility below 95, or best practices or SEO below 90, fails the run; performance below 90 is reported as a warning.
 
 ## Running it locally
