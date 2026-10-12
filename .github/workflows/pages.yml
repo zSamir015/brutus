@@ -39,7 +39,7 @@ jobs:
             printf 'window.APP_CONFIG = { functionsUrl: "%s", anonKey: "%s" };\n' "$FUNCTIONS_URL" "$ANON_KEY" > _site/js/config.js
           fi
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
