@@ -94,9 +94,11 @@ npm test   # node --test, sin dependencias
 
 Los tests cubren los módulos puros: limpieza y validación del email, los datos de la suscripción, el límite de intentos en el navegador y la lógica del horario, incluida la zona horaria del restaurante.
 
-Dos workflows de GitHub Actions se encargan del resto:
+Tres workflows de GitHub Actions se encargan del resto:
 
-- **Deploy** (`pages.yml`), en cada push a `main`: ejecuta los tests, genera `_site/` con `scripts/build.sh` (que copia solo los archivos públicos, así que `supabase/`, `test/` y la documentación nunca se publican), escribe `js/config.js` a partir de los secretos del repositorio si existen y publica `_site/` como un único commit en la rama `gh-pages`.
+- **Tests** (`test.yml`), en cada push a `main` y en cada pull request: ejecuta `npm test`.
+
+- **Deploy** (`pages.yml`), en cada push a `main`: ejecuta los tests, genera `_site/` con `scripts/build.sh` (que copia solo los archivos públicos, así que `supabase/`, `test/` y la documentación nunca se publican), escribe `js/config.js` a partir de los secretos del repositorio si existen y publica `_site/` con la acción de despliegue de GitHub Pages. Solo el job de despliegue puede escribir, y solo en Pages, no en el repositorio.
 - **Lighthouse** (`lighthouse.yml`), en cada push a `main` y en cada pull request: genera `_site/` y lo audita tres veces. Accesibilidad por debajo de 95, o buenas prácticas o SEO por debajo de 90, hacen fallar la ejecución; rendimiento por debajo de 90 se reporta como aviso.
 
 ## Ejecutarlo en local
