@@ -1,14 +1,17 @@
 # Brutus Burgers
 
+**Una landing neo-brutalista en HTML, CSS y JavaScript puros, con una suscripción en Supabase protegida y con límite de peticiones.**
+
 [![Deploy](https://github.com/zSamir015/brutus/actions/workflows/pages.yml/badge.svg)](https://github.com/zSamir015/brutus/actions/workflows/pages.yml)
+[![Tests](https://github.com/zSamir015/brutus/actions/workflows/test.yml/badge.svg)](https://github.com/zSamir015/brutus/actions/workflows/test.yml)
 [![Lighthouse](https://github.com/zSamir015/brutus/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/zSamir015/brutus/actions/workflows/lighthouse.yml)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[English](README.md) | Español
+[English](README.md) | **Español**
 
 Brutus Burgers es la landing page de una hamburguesería ficticia en Costa del Este, Panamá, con estilo neo-brutalista. El frontend es HTML, CSS y módulos de JavaScript, sin frameworks ni herramientas de build. El formulario de suscripción puede usar Supabase de forma opcional, mediante una Edge Function que valida los datos y limita las peticiones. Los textos del sitio están en español porque el negocio está en Panamá.
 
-Demo: https://zsamir015.github.io/brutus/
+**[Demo en vivo →](https://zsamir015.github.io/brutus/)** · [Política de seguridad](SECURITY.md)
 
 ![La hamburguesa armándose, el filtro del menú, el horario y el formulario de suscripción](docs/media/demo.gif)
 
@@ -16,9 +19,24 @@ Demo: https://zsamir015.github.io/brutus/
 | ------------------------------------------- | ------------------------------------ |
 | ![Vista de escritorio](docs/media/desktop.png) | ![Vista móvil](docs/media/mobile.png) |
 
+## Stack técnico
+
+[![Stack](https://skillicons.dev/icons?i=html,css,js,supabase,postgres,githubactions)](#cómo-está-hecho-el-frontend)
+
+HTML5 · Propiedades personalizadas de CSS · Módulos ES de JavaScript · Supabase (Edge Functions, Postgres, pg_cron) · Zod · node --test · Lighthouse CI · GitHub Actions + Pages
+
+## Inicio rápido
+
+```sh
+git clone https://github.com/zSamir015/brutus.git && cd brutus
+npm run dev   # http://localhost:8000
+npm test
+```
+
 ## Contenido
 
 - [Funciones](#funciones)
+- [Arquitectura](#arquitectura)
 - [Cómo está hecho el frontend](#cómo-está-hecho-el-frontend)
 - [Backend de suscripción](#backend-de-suscripción)
 - [Seguridad](#seguridad)
@@ -39,6 +57,30 @@ Demo: https://zsamir015.github.io/brutus/
 - Esqueletos de carga mientras llega el contenido, y secciones que aparecen al hacer scroll.
 - El formulario del "Club Brutus", con validación, consentimiento explícito, un campo trampa para bots y un límite de intentos en el navegador.
 - Detalles de interfaz: una cinta de anuncios, un brillo que recorre los botones, tarjetas que se elevan y se hunden, una casilla animada y grabados de John Leech de 1850 (dominio público) que se enderezan al pasar el ratón.
+
+## Arquitectura
+
+```mermaid
+flowchart LR
+  subgraph Browser["Navegador · GitHub Pages"]
+    PAGE["index.html + módulos ES<br/>sin framework ni build"]
+    DATA["data/content.json<br/>menú, horario, reseñas"]
+    FORM["Formulario<br/>validación, consentimiento, límite"]
+  end
+  subgraph Supabase["Supabase (opcional)"]
+    EF["Edge Function subscribe<br/>orígenes permitidos, Zod, límites"]
+    DB[("Postgres<br/>RLS forzado, sin políticas")]
+    CRON["pg_cron<br/>limpia los límites viejos"]
+  end
+  PAGE --> DATA
+  PAGE --> FORM
+  FORM -->|"POST + anon key"| EF -->|service role| DB
+  FORM -.->|"modo demo sin backend"| PAGE
+  CRON --> DB
+  subgraph CI["GitHub Actions"]
+    T["tests + Lighthouse"] --> D["despliega solo _site/"]
+  end
+```
 
 ## Cómo está hecho el frontend
 
@@ -94,10 +136,9 @@ npm test   # node --test, sin dependencias
 
 Los tests cubren los módulos puros: limpieza y validación del email, los datos de la suscripción, el límite de intentos en el navegador y la lógica del horario, incluida la zona horaria del restaurante.
 
-Tres workflows de GitHub Actions se encargan del resto:
+Tres workflows de GitHub Actions se encargan del resto. `main` está protegida (pull requests, historial lineal y `lighthouse` obligatorio) y Dependabot mantiene las actions al día.
 
 - **Tests** (`test.yml`), en cada push a `main` y en cada pull request: ejecuta `npm test`.
-
 - **Deploy** (`pages.yml`), en cada push a `main`: ejecuta los tests, genera `_site/` con `scripts/build.sh` (que copia solo los archivos públicos, así que `supabase/`, `test/` y la documentación nunca se publican), escribe `js/config.js` a partir de los secretos del repositorio si existen y publica `_site/` con la acción de despliegue de GitHub Pages. Solo el job de despliegue puede escribir, y solo en Pages, no en el repositorio.
 - **Lighthouse** (`lighthouse.yml`), en cada push a `main` y en cada pull request: genera `_site/` y lo audita tres veces. Accesibilidad por debajo de 95, o buenas prácticas o SEO por debajo de 90, hacen fallar la ejecución; rendimiento por debajo de 90 se reporta como aviso.
 
