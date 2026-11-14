@@ -1,17 +1,27 @@
 /* Single source of design: colors, borders, shadows, spacing, typography and motion.
    styles.css defines no values of its own; it only consumes these variables. */
 :root {
-  /* "Grill" palette */
+  /* "Grill" palette (WCAG AA/AAA calibrated) */
   --ink: #141010;
+  --ink-soft: #221b1b;
+  --ink-panel: #2c2323;
   --cream: #fff4e0;
+  --surface-warm: #fffaf0;
+  --surface-tint: #f5e5c6;
   --white: #ffffff;
   --mustard: #ffc93c;
-  --ketchup: #e63b2e;
+  --mustard-soft: #ffe699;
+  --ketchup: #c92519;
+  --ketchup-bright: #e63b2e;
   --lettuce: #3fae5a;
+  --lettuce-soft: #dcf7e3;
   --bun: #f2a541;
+  --bun-light: #ffd28a;
   --patty: #6b3a1f;
+  --patty-dark: #3d1e0d;
   --cheese: #ffb703;
-  --muted: #5c524a;
+  --muted: #4f453e;
+  --muted-light: #d8cbb8;
   --danger-bg: #ffe3df;
   --sea: #3f8fd2;
   --sky: #cfe8f7;
@@ -19,21 +29,47 @@
   --chicken: #d9922e;
   --beet: #a8324a;
   --jalapeno: #2e7d32;
+  --ice: #e8f6ff;
+
+  /* Checkered diner & halftone patterns */
+  --checker-size: 16px;
+  --checker-sm: 12px;
+  --halftone-dot: 1.5px;
+  --halftone-space: 12px;
+  --halftone-ink: rgb(20 16 16 / 0.08);
+  --ticket-tooth: 10px;
 
   /* Skeleton */
   --skel-base: #efe2c8;
   --skel-shine: #fff7e8;
 
-  /* Borders and solid shadows */
+  /* Borders and solid Neo-Brutalist shadows */
   --bw: 3px;
   --bw-thin: 2px;
   --border: var(--bw) solid var(--ink);
+  --border-thin: var(--bw-thin) solid var(--ink);
+  --border-dashed: var(--bw-thin) dashed var(--ink);
+  --border-light: var(--bw-thin) solid var(--white);
+  --border-mustard: var(--bw) solid var(--mustard);
   --offset: 6px;
+  --offset-sm: 3px;
+  --offset-lg: 10px;
   --shadow: var(--offset) var(--offset) 0 var(--ink);
-  --shadow-sm: 3px 3px 0 var(--ink);
-  --shadow-lg: 10px 10px 0 var(--ink);
+  --shadow-sm: var(--offset-sm) var(--offset-sm) 0 var(--ink);
+  --shadow-lg: var(--offset-lg) var(--offset-lg) 0 var(--ink);
+  --shadow-mustard: var(--offset) var(--offset) 0 var(--mustard);
+  --shadow-mustard-lg: var(--offset-lg) var(--offset-lg) 0 var(--mustard);
+  --shadow-ketchup: var(--offset) var(--offset) 0 var(--ketchup-bright);
   --lift: 2px;
-  --backdrop: rgb(20 16 16 / 0.55);
+  --lift-lg: 4px;
+  --press: 4px;
+  --backdrop: rgb(20 16 16 / 0.72);
+
+  /* Radii */
+  --radius-xs: 2px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -41,26 +77,61 @@
   --space-3: 1rem;
   --space-4: 1.5rem;
   --space-5: 2.5rem;
-  --space-6: 4rem;
+  --space-6: 4.5rem;
 
+  /* Layout & component dimensions */
   --touch: 44px; /* minimum touch target size */
-  --max-width: 1140px;
+  --touch-sm: 36px;
+  --icon-sm: 1rem;
+  --icon-md: 1.25rem;
+  --icon-lg: 1.5rem;
+  --dot: 0.65rem;
+  --progress-h: 4px;
+  --diner-strip-h: 16px;
+  --max-width: 1180px;
   --form-width: 520px;
-  --card-min: 250px;
-  --header-h: 7rem; /* navbar + ticker */
+  --card-min: 280px;
+  --reason-min: 260px;
+  --stat-min: 200px;
+  --drawer-width: 26rem;
+  --modal-width: 46rem;
+  --cinema-h: 22rem;
+  --header-h: 7.5rem; /* navbar + ticker */
   --focus-offset: 3px;
+  --vip-chip-w: 2.75rem;
+  --vip-chip-h: 2rem;
+  --barcode-h: 2.25rem;
+
+  /* Z-index layers */
+  --z-base: 1;
+  --z-nav: 2;
+  --z-header: 50;
+  --z-floating: 60;
+  --z-drawer: 80;
+  --z-modal: 90;
+  --z-toast: 100;
 
   /* Typography (system fonts only: the CSP allows 'self' and nothing else) */
-  --font: "Helvetica Neue", Arial, system-ui, sans-serif;
-  --font-display: "Arial Black", "Helvetica Neue", Arial, system-ui, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Arial Black", "Inter", "Helvetica Neue", Impact, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --fs-xs: 0.78rem;
   --fs-sm: 0.875rem;
   --fs-md: 1rem;
-  --fs-lg: clamp(1.2rem, 1rem + 0.8vw, 1.6rem);
-  --fs-xl: clamp(2rem, 1.2rem + 3.5vw, 3.25rem);
-  --fs-hero: clamp(2.6rem, 1rem + 6.5vw, 5.25rem);
+  --fs-lg: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+  --fs-xl: clamp(1.9rem, 1.25rem + 2.8vw, 3rem);
+  --fs-display-num: clamp(2.4rem, 1.8rem + 2.5vw, 3.6rem);
+  --fs-hero: clamp(2.5rem, 1.1rem + 5.8vw, 4.75rem);
+  --fw-medium: 500;
   --fw-bold: 700;
   --fw-black: 900;
+  --lh-display: 0.96;
+  --lh-heading: 1.08;
+  --lh-body: 1.55;
+  --tracking-tight: -0.025em;
+  --tracking-wide: 0.06em;
+  --tracking-wider: 0.1em;
+  --tracking-widest: 0.18em;
 
   /* SVG illustrations (viewBox units) */
   --svg-stroke: 7;
@@ -68,36 +139,78 @@
   --svg-road: 22;
   --svg-highway: 18;
   --svg-art: 3.5;
+  --svg-icon-stroke: 2.5;
   --svg-hair: 2;
   --svg-seed: 1.5;
   --svg-trunk: 9;
-  --svg-text-sm: 22px;
+  --svg-text-sm: 18px;
   --svg-text-md: 26px;
+  --svg-stamp-ring: 11.5px;
+  --svg-stamp-center: 22px;
   --svg-tracking: 2px;
-  --dish-h: 7.5rem;
-  --dish-tilt: -5deg;
+  --dish-h: 9.5rem;
+  --dish-featured-h: 15.5rem;
+  --reason-art-h: 4rem;
+  --mini-art-w: 3.5rem;
+  --dish-tilt: -4deg;
   --svg-label: 13px;
-  --sticker: 6.5rem;
+  --sticker: 7.75rem;
   --sticker-tilt: 12deg;
   --art-max: 26rem;
   --map-min: 16rem;
   --check: 1.375rem;
 
-  /* Motion */
-  --speed: 120ms;
-  --speed-slow: 450ms;
+  /* Motion & Choreography */
+  --speed: 140ms;
+  --speed-med: 260ms;
+  --speed-slow: 460ms;
   --speed-bounce: 900ms;
+  --speed-pulse: 1.8s;
+  --speed-float: 3.6s;
   --speed-shimmer: 1.2s;
-  --stagger: 110ms;
+  --stamp-speed: 18s;
+  --stagger: 95ms;
   --drop: -140px;
+  --float-y: -8px;
   --ticker-speed: 32s;
   --glare-speed: 1.6s;
   --glare: rgb(255 255 255 / 0.55);
-  --icon-wiggle: -12deg;
-  --icon-scale: 1.25;
+  --icon-wiggle: -10deg;
+  --icon-scale: 1.18;
   --tilt-a: -1.5deg;
   --tilt-b: 1.2deg;
-  --press: 4px;
+  --vip-tilt: -1.2deg;
+  --tape-tilt: -6deg;
+  --tape-tilt-alt: 5deg;
+  --stamp-tilt: -11deg;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Editorial Archive, Radar, Combo & Monumental Wordmark tokens */
+  --tape-bg: rgb(255 244 224 / 0.86);
+  --tape-w: 4.5rem;
+  --tape-h: 1.15rem;
+  --combo-tray-h: 12.5rem;
+  --fs-monument: clamp(3rem, 12.5vw, 9.75rem);
+  --radar-speed: 2.4s;
+  --route-speed: 1.6s;
+  --smoke-speed: 3.2s;
+  --svg-dash: 8;
+
+  /* "Brasa de Medianoche" Night Mode palette */
+  --night-bg: #120e0e;
+  --night-surface: #1b1414;
+  --night-card: #241b1b;
+  --night-elevated: #2e2222;
+  --night-text: #fff4e0;
+  --night-muted: #d7c5b0;
+  --night-border: #ffc93c;
+  --night-halftone: rgb(255 201 60 / 0.09);
+  --night-sky: #141829;
+  --night-tower: #2b3248;
+  --night-window: #ffd28a;
+  --night-shadow: var(--offset) var(--offset) 0 var(--ketchup-bright);
+  --night-shadow-sm: var(--offset-sm) var(--offset-sm) 0 var(--mustard);
+  --night-shadow-lg: var(--offset-lg) var(--offset-lg) 0 var(--mustard);
 }
+
